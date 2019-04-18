@@ -47,20 +47,36 @@
 * Data science modules
   * [Numpy module](/numpy_module/numpy_module.md)
   * [Pandas module](/pandas_module/pandas_module.md)
+  * [Pandas module with more data](/pandas-module_data/pandas-module_data.md)
   * [Matplotlib module](/matplotlib_module/matplotlib_module.md)
+  * [Sympy module](/sympy_module/sympy_module.md)
+  * [Request data from URLs](/url_request_uscrn/url_request_uscrn.md)
+
+* Stats
+  * [Descriptive statistics](/descriptive_stats/descriptive_stats.md)
+  * [Linear fitting](/stats_linear_fit/stats_linear_fit.md)
+  * [Polynomial fit](/stats_polynomial_fit/stats_polynomial_fit.md)
+  * [Curve fitting (exponential)](/stats_curve_fitting_exp/stats_curve_fitting_exp.md)
+  * [Curve fitting (cosine wave)](/stats_curve_fitting_wave/stats_curve_fitting_wave.md)
 
 * Image analysis
   * [Green canopy cover](/image_analysis_canopeo/image_analysis_canopeo.md)
 
 * Models
+  * [Soil temperature model](/soil_temperature_model/soil_temperature_model.md)
   * [Mixing model](/mixing_model/mixing_model.md)
   * [Newton's law of cooling](/newton_law_cooling/newton_law_cooling.md)
   * [Lotka-Volterra](/lotka_volterra/lotka_volterra.md)
 
 * Projects
+  * [Day of year](/day_of_year/day_of_year.md)
+  * [Thermal time](/thermal_time/thermal_time.md)
+  * [Photoperiod](/photoperiod/photoperiod.md)
+  * [Random groups generator v1](/random_groups_v1/random_groups_v1.md)
+  * [Random groups generator v2](/random_groups_v2/random_groups_v2.md)
   * [Morse code learning game](/morse_code_guessing_game/morse_code_guessing_game.md)
-  * [Morse decode](/morse_decode/morse_decode.md)
-  * [Morse encode](/morse_encode/morse_encode.md)
+  * [Morse decoder](/morse_decoder/morse_decoder.md)
+  * [Morse encoder](/morse_encoder/morse_encoder.md)
   * [Hangman](/hangman/hangman.md)
   * [Complementary DNA sequence](/complementary_dna_sequence/complementary_dna_sequence.md)
   * [Birthday paradox](/birthday_paradox/birthday_paradox.md)

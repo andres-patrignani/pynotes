@@ -533,3 +533,40 @@ plt.show()
 
 
 >Press ctrl + enter several times to show how different sets of random numbers change the chart
+
+## Numerical integration
+
+Example for calculation of soil water storage using soil moisture data recorded at two different dates and at ten different soil depths using a neutron probe in a wheat field located near Lahoma, OK. The goal is to integrate the soil moisture values for along the soil profile (i.e. all depths) for each date. We will then subtract the soil water storage to caculate the change in soil water storage over the course of nine days.
+
+
+
+```python
+depths = [10,30,50,70,90,110,130,150,170,190] # in centimeters
+vwc_16_jul_2009 = [0.094,0.190,0.196,0.229,0.154,0.227,0.266,0.258,0.258,0.262] # cm^3/cm^3
+vwc_24_jul_2009 = [0.156,0.244,0.207,0.227,0.162,0.250,0.277,0.258,0.262,0.269] # cm^3/cm^3
+
+```
+
+
+```python
+storage_16_jul_2009 = np.trapz(vwc_16_jul_2009,depths)
+storage_24_jul_2009 = np.trapz(vwc_24_jul_2009,depths)
+```
+
+
+```python
+# Compute change in storage
+change_storage = storage_24_jul_2009 - storage_16_jul_2009
+```
+
+
+```python
+print(storage_16_jul_2009)
+print(storage_24_jul_2009)
+print(change_storage)
+```
+
+    39.120000000000005
+    41.99000000000001
+    2.8700000000000045
+
