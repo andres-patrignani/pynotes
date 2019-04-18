@@ -3,9 +3,10 @@
   * [Terminal commands](/getting_started/terminal_commands.md)
   * [Git commands](/getting_started/git_commands.md)
   * [My first Github repository](/getting_started/my_first_repo.md)
+  * [Jupyter Lab](/jupyter_lab/jupyter_lab.md)
   * [Markdown basics](/getting_started/markdown_basics.md)
   * [LaTeX equations](/getting_started/latex_equations.md)
-  * [Alternative python mlibraries](/getting_started/alt_python_libraries.md)
+  * [Alternative python libraries](/getting_started/alt_python_libraries.md)
   * [Hello world](/hello_world/hello_world.md)
 
 * Good coding practices
@@ -61,3 +62,6 @@
   * [Morse decode](/morse_decode/morse_decode.md)
   * [Morse encode](/morse_encode/morse_encode.md)
   * [Hangman](/hangman/hangman.md)
+  * [Complementary DNA sequence](/complementary_dna_sequence/complementary_dna_sequence.md)
+  * [Birthday paradox](/birthday_paradox/birthday_paradox.md)
+  * [Single leaky bucket](/single_leaky_bucket/single_leaky_bucket.md)
