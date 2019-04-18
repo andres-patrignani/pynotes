@@ -14,12 +14,13 @@
   <a href="https://gitter.im/ntrocoding-spring-2019/community" class="gitter-open-chat-button">Open Chat</a>
   <script>
     window.$docsify = {
-      name: 'Andres Patrignani',
-      repo: 'docs',
+      name: 'PyNotes',
+      repo: 'andres-patrignani/pynotes',
       search: 'auto',
       loadSidebar: true,
       subMaxLevel: 2,
-      auto2Top: true
+      auto2Top: true,
+      markdown: {smartypants: true}
     }
   </script>
   <script>
@@ -31,5 +32,15 @@
 
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      // enable $ for inline math -> use \$ for ordinary dollar-sign
+      tex2jax: {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+    });
+  </script>
 </body>
 </html>

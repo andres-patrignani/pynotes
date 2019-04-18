@@ -1,6 +1,6 @@
-## Useful Terminal Commands
+# Useful Terminal Commands
 
-### General commands (assuming you are using Mac terminal or Git Bash)
+## General commands (Mac terminal or Git Bash)
 
 `cd <foldername>` change directory; navigate into a new folder (assuming the folder exists in the directory).
 
@@ -10,7 +10,7 @@
 
 `pwd` full path to current directory
 
-### Useful shortcuts**
+## Useful shortcuts
 
 Use `Tab key` to autocomplete directory and file names
 
