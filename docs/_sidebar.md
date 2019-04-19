@@ -53,7 +53,7 @@
   * [Request data from URLs](/url_request_uscrn/url_request_uscrn.md)
 
 * Stats
-  * [Descriptive statistics](/descriptive_stats/descriptive_stats.md)
+  * [Descriptive statistics](/stats_descriptive/stats_descriptive.md)
   * [Linear fitting](/stats_linear_fit/stats_linear_fit.md)
   * [Polynomial fit](/stats_polynomial_fit/stats_polynomial_fit.md)
   * [Curve fitting (exponential)](/stats_curve_fitting_exp/stats_curve_fitting_exp.md)
