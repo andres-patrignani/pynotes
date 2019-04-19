@@ -5,4 +5,5 @@
 - A set of hands-on python notes intended for students that have little or no programming experience in plant and soil sciences.
 
 [GitHub](https://github.com/andres-patrignani/pynotes)
-[Get Started](#pynotes-in-plant-and-soil-sciences)
+[Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?filepath=%2Fnotebooks)
+[Docs ▼](#pynotes-in-plant-and-soil-sciences)
