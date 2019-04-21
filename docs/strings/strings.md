@@ -140,7 +140,6 @@ print('file_name'.replace('_', 'hello')) # Replace underscore with 'hello'
 
 
 ```python
-# COncatenate stri
 
 # Useful when building file names and URLs. You can pass a tuple or a list.
 myList = ["London", "Prague", "Tokyo"]
