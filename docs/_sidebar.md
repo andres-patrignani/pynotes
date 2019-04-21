@@ -58,6 +58,7 @@
   * [Polynomial fit](/stats_polynomial_fit/stats_polynomial_fit.md)
   * [Curve fitting (exponential)](/stats_curve_fitting_exp/stats_curve_fitting_exp.md)
   * [Curve fitting (cosine wave)](/stats_curve_fitting_wave/stats_curve_fitting_wave.md)
+  * [Multiple linear regression](/stats_multiple_linear_regression/stats_multiple_linear_regression.md)
 
 * Image analysis
   * [Green canopy cover](/image_analysis_canopeo/image_analysis_canopeo.md)
@@ -72,6 +73,7 @@
   * [Day of year](/day_of_year/day_of_year.md)
   * [Thermal time](/thermal_time/thermal_time.md)
   * [Photoperiod](/photoperiod/photoperiod.md)
+  * [Soil textural class](/soil_textural_class/soil_textural_class.md)
   * [Random groups generator v1](/random_groups_v1/random_groups_v1.md)
   * [Random groups generator v2](/random_groups_v2/random_groups_v2.md)
   * [Morse code learning game](/morse_code_guessing_game/morse_code_guessing_game.md)

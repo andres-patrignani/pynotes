@@ -135,3 +135,20 @@ print(onehundred())
 
     5050
 
+
+
+```python
+# isleapyear function
+def isleap(year):
+    leap = year%4 == 0  and (year%100 > 0 or year%400 == 0)
+    return leap
+    
+isleap(2012) # 2012 is a leap year
+```
+
+
+
+
+    True
+
+

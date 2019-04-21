@@ -386,6 +386,22 @@ print(s)
 
 ```
 
+Note the difference between the random module in Numpy and the core Random module:
+
+
+```python
+# Core random module
+import random
+print(random.randint(-1,1))
+
+# Numpy random module
+print(np.random.randint(-1,2))
+```
+
+    1
+    0
+
+
 ## Numpy common functions
 
 
@@ -529,7 +545,7 @@ plt.show()
 ```
 
 
-![png](output_36_0.png)
+![png](output_38_0.png)
 
 
 >Press ctrl + enter several times to show how different sets of random numbers change the chart
