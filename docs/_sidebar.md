@@ -59,12 +59,14 @@
 
 * Image analysis
   * [Green canopy cover](/image_analysis_canopeo/image_analysis_canopeo.md)
+  * [Counting seeds](/image_analysis_count_seeds/image_analysis_count_seeds.md)
 
 * Models
   * [Soil temperature model](/soil_temperature_model/soil_temperature_model.md)
   * [Mixing model](/mixing_model/mixing_model.md)
   * [Newton's law of cooling](/newton_law_cooling/newton_law_cooling.md)
   * [Lotka-Volterra](/lotka_volterra/lotka_volterra.md)
+  * [Conway's Game of Life](/game_of_life/game_of_life.md)
 
 * Projects
   * [Day of year](/day_of_year/day_of_year.md)
