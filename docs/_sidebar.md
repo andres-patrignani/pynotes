@@ -14,7 +14,7 @@
   * [Code style](/coding_practices/code_style.md)
   * [Reference framework](/coding_practices/reference_framework.md)
 
-* Data type and data structures
+* Data types and data structures
   * [Data types](/data_types/data_types.md)
   * [Data structures](/data_structures/data_structures.md)
   * [Indexing and slicing lists](/indexing_and_slicing_lists/indexing_and_slicing_lists.md)
@@ -54,6 +54,7 @@
   * [Linear fitting](/stats_linear_fit/stats_linear_fit.md)
   * [Polynomial fit](/stats_polynomial_fit/stats_polynomial_fit.md)
   * [Curve fitting (exponential)](/stats_curve_fitting_exp/stats_curve_fitting_exp.md)
+
   * [Curve fitting (cosine wave)](/stats_curve_fitting_wave/stats_curve_fitting_wave.md)
   * [Multiple linear regression](/stats_multiple_linear_regression/stats_multiple_linear_regression.md)
 
@@ -73,6 +74,7 @@
   * [Thermal time](/thermal_time/thermal_time.md)
   * [Photoperiod](/photoperiod/photoperiod.md)
   * [Soil textural class](/soil_textural_class/soil_textural_class.md)
+  * [Drydowns from soil moisture timeseries](/drydowns_from_timeseries/drydowns_from_timeseries.md)
   * [Random groups generator v1](/random_groups_v1/random_groups_v1.md)
   * [Random groups generator v2](/random_groups_v2/random_groups_v2.md)
   * [Morse code learning game](/morse_code_guessing_game/morse_code_guessing_game.md)
@@ -82,3 +84,4 @@
   * [Complementary DNA sequence](/complementary_dna_sequence/complementary_dna_sequence.md)
   * [Birthday paradox](/birthday_paradox/birthday_paradox.md)
   * [Single leaky bucket](/single_leaky_bucket/single_leaky_bucket.md)
+

@@ -9,14 +9,6 @@ A simple code to determine the soil textural class based on the percent of sand 
 
 
 ```python
-# Inputs
-sand = 10
-clay = 90
-soiltexturalclass(sand,clay)
-```
-
-
-```python
 def soiltexturalclass(sand,clay):
     """Function that returns the USDA soil textural class given the percent sand and clay."""
     
@@ -70,49 +62,15 @@ def soiltexturalclass(sand,clay):
 
 
 ```python
-print(textural_class)
+# Inputs
+sand = 10
+clay = 90
+soiltexturalclass(sand,clay)
 ```
 
-    sand
 
 
 
-```python
-# Sand
-class (1,:) = silt + 1.5*clay < 15
+    'clay'
 
-# Loamy sand.
-class (2,:) = silt + 1.5*clay >= 15 & silt + 2*clay < 30
 
-# Sandy loam. 
-class (3,:) = (clay >= 7 & clay < 20 & sand > 52 & silt + 2*clay >= 30) |
-              (clay < 7 & silt < 50 & silt + 2*clay >= 30)           
-
-# Loam
-class (4,:) = clay >= 7 & clay < 27 & silt >= 28 & silt < 50 & sand <= 52
-
-# Silt loam.
-class (5,:) = (silt >= 50 & clay >= 12 & clay < 27) |
-              (silt >= 50 & silt < 80 & clay < 12)
-
-# Silt
-class (6,:) = silt >= 80 & clay < 12
-
-# Sandy clay loam
-class (7,:) = clay >= 20 & clay < 35 & silt < 28 & sand > 45
-
-# Clay loam
-class (8,:) = clay >= 27 & clay < 40 & sand > 20 & sand <= 45
-
-# Silty clay loam
-class (9,:) = clay >= 27 & clay < 40 & sand <= 20
-
-# Sandy clay
-class (10,:) = clay >= 35 & sand > 45
-
-# Silty clay
-class (11,:) = clay >= 40 & silt >= 40
-
-# Clay
-class (12,:) = clay >= 40 & sand <= 45 & silt < 40
-```
