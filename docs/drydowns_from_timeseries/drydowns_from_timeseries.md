@@ -25,8 +25,6 @@ import matplotlib.pyplot as plt
 
 ## Model description
 
-Before we even dive into the script I want to show you what several examples of drydowns based on the exponential model that we will use later on in this script. Soil moisture can increase rapidly during and soon after rainfall events. In subsequent days soil moisture dries at a decreasing rate resembling an exponential decay, which depends on atmospheric demand, soil type and structure, and the presence of vegetation. The lines below represent possible decays under different scenarios.
-
 $$ SWC = A e^{-\frac{t}{\tau}} + \theta_{res}$$
 
 SWC = Soil water content in $m^{3}/m^{3}$
@@ -39,6 +37,12 @@ $\tau$ = Constant the modulates the rate at which the soil dries
 
 $\theta_{res}$ = Residual soil water content $m^{3}/m^{3}$. This is a lower limit that needs to be determined from the data. Alternatively this value can be found by using pedo-transfer functions that relate the residual water content as a function of soil texture (e.g. percent sand content)
 
+
+## Intuition
+
+Before we even dive into the script I want to show you what several examples of drydowns based on the exponential model that we will use later on in this script. Soil moisture can increase rapidly during and soon after rainfall events. In subsequent days soil moisture dries at a decreasing rate resembling an exponential decay, which depends on atmospheric demand, soil type and structure, and the presence of vegetation. The lines below represent possible decays under different scenarios.
+
+> Using an exponentail decay function to model drydowns is an effective and simple empirical method. Drydowns resembling an exponential decay are typical of soil moisture timeries obtained with in-situ sensors. Applying this to remote sensing data should work, but drydowns may not always exhibit a smooth exponentail decay. The main advantage of this simple model is that it provides a quantitative framework for comparing and classifying drydowns from different times of the year and locations.
 
 
 ```python
@@ -62,7 +66,7 @@ plt.show()
 ```
 
 
-![png](output_3_0.png)
+![png](output_4_0.png)
 
 
 ## Load dataset
@@ -86,91 +90,11 @@ glob.os.chdir("/Users/andrespatrignani/Dropbox/Teaching/Scientific programming/p
 
 ```
 
+Load data and convert dates in to Pandas datetime format and check that the conversion was successful
+
 
 ```python
 data = pd.read_csv('smap_eddi_timeseries.csv')
-data.head(5)
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>date</th>
-      <th>doy</th>
-      <th>rootzone</th>
-      <th>surface</th>
-      <th>eddi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>01-Jan-2016 00:00:00</td>
-      <td>1</td>
-      <td>0.360348</td>
-      <td>0.377937</td>
-      <td>2.104648</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>02-Jan-2016 00:00:00</td>
-      <td>2</td>
-      <td>0.360385</td>
-      <td>0.377916</td>
-      <td>2.104648</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>03-Jan-2016 00:00:00</td>
-      <td>3</td>
-      <td>0.360442</td>
-      <td>0.378046</td>
-      <td>1.701410</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>04-Jan-2016 00:00:00</td>
-      <td>4</td>
-      <td>0.360362</td>
-      <td>0.377900</td>
-      <td>1.701410</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>05-Jan-2016 00:00:00</td>
-      <td>5</td>
-      <td>0.359971</td>
-      <td>0.377537</td>
-      <td>1.701410</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-Just in case,  let's convert dates in to Pandas datetime format and check that the conversion was successful
-
-
-```python
 data.date = pd.to_datetime(data.date)
 data.head(5)
 ```
@@ -255,6 +179,7 @@ data.head(5)
 # Plot timeseries of soil moisture and EDDI
 plt.figure(figsize=(9,6))
 plt.plot(data.date,data.rootzone)
+plt.ylabel('Volumetric Water Content $m^3/m^3$')
 plt.show()
 ```
 
@@ -358,6 +283,7 @@ plt.plot(data.date,data.rootzone,'--k')
 for i in range(len(drydowns_clean)):
     plt.plot(drydowns_clean[i]['date'],drydowns_clean[i]['rootzone'],'-r')
     
+plt.ylabel('Volumetric Water Content $m^3/m^3$')
 plt.show()
 ```
 
@@ -407,6 +333,7 @@ for i in range(len(drydowns_clean)):
     model = lambda t,tau: A * np.exp(-t/tau) + theta_res;
     plt.plot(drydowns_clean[i]['date'],model(np.array(drydowns_clean[i]['days']), drydowns_clean[i]['tau']),'-b')
     
+plt.ylabel('Volumetric Water Content $m^3/m^3$')
 plt.show()
 
 ```
@@ -433,12 +360,29 @@ for i in range(len(drydowns_clean)):
 
 
 plt.scatter(doy_center,tau,50,median_eddi)
+plt.xlabel('Day of the year')
+plt.ylabel('Tau')
 plt.colorbar()
 plt.show()
 ```
 
 
 ![png](output_21_0.png)
+
+
+
+```python
+# Alternatively we can express tau as the ln(tau), so that the range is narrower
+plt.scatter(doy_center,np.log(tau),50,median_eddi)
+plt.xlabel('Day of the year')
+plt.ylabel('$ln (Tau)$')
+plt.colorbar()
+plt.show()
+
+```
+
+
+![png](output_22_0.png)
 
 
 ## Comments and Questions
