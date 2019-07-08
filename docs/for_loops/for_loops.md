@@ -168,40 +168,6 @@ print(txtfiles)  # This is not part of the loop
     ['ch1_down_the_rabbit_hole.txt', 'dna_sequence.txt', 'jabberwocky_lewis_carroll.txt', 'morse_lookup_table.txt', 'nobel_physics.txt']
 
 
-## Antecedent Precipitation Index
-
-This is a simple exercise for modeling soil moisture based on rainfall.
-
-$$SWC_t = \alpha \;SWC_{t-1} + P_t$$
-
-
-$SWC_t$: Soil water content at time $t$ (today)
-
-$SWC_{t-1}$: Soil water content at time $t-1$ (yesterday)
-
-$\alpha$: Loss coefficient. Range between 0 and 1
-
-$P_t$: Precipitation at time $t$ (today)
-
-The model requires knowledge of the soil water content the first day. This is called an **initial condition** or initial state of the soil. In other words, we need a starting point to work out the magic with the model.
-
-
-```python
-soil_moisture = [200]     # Some initial soil water amount in the soil. Same units as rainfall data
-rainfall = [0,0,0,12,25,0,0,0,30,0,0,0,0,0,0]
-alpha = 0.9 # Percent of soil moisture remaining from the previous day.
-
-for i in range(1,len(rainfall)):
-    new_soil_moisture = round(soil_moisture[i-1]*alpha + rainfall[i])
-    soil_moisture.append(new_soil_moisture)
-
-print(soil_moisture)
-
-```
-
-    [200, 180, 162, 158, 167, 150, 135, 122, 140, 126, 113, 102, 92, 83, 75]
-
-
 ## Break and continue
 
 These two reserved words are extrmely useful to control the flow of loops. A break will automatically interrupt the ongoing loop. Note that in nested loops the break will only interrupt the loop in which the break was inserted, meaning that to fully break of nested loop we need to add two or more break points.
