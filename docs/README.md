@@ -1,6 +1,13 @@
-# PyNotes in Plant and Soil Sciences
+# PyNotes for Plant and Soil Scientists
 
->A hands-on set of python notebooks intended for students that have little or no programming experience and are interested in acquiring basic programming skills. The notes focus on understanding programming logic by developing codes for automating and increasing the reproducibility of common tasks in plant and soil sciences.
+A hands-on set of python notebooks intended for students that have little or no programming experience and are interested in acquiring basic programming skills. The notes focus on understanding programming logic by developing codes for automating and increasing the reproducibility of common tasks in plant and soil sciences.
+
+## Interactive resources
+
+[Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?filepath=notebooks)
+(It make take few seconds to few minutes to load the interactive notebooks. For a quick reference consider exploring the Github repository or the PyNotes documentation.)
+
+[Github repository](https://github.com/andres-patrignani/pynotes)
 
 ## Goals
 

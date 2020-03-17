@@ -3,13 +3,10 @@
 The motivation for this book stems from the need to better understand and quantify properties and processes in natural systems, particularly those related the soil-plant-atmosphere continuum.
 
 
-# About the author
-
-I started learning programming in an advance soil phsyics class, where I created a simple soil water balance model that calculated the amount of soil water storage. At that time there wasn't much emphasis
+# Inspiration
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/nKIu9yen5nc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Collection of inspirational quotes
 
 >“I think that great programming is not all that dissimilar to great art. Once you start thinking in concepts of programming it makes you a better person...as does learning a foreign language, as does learning math, as does learning how to read.“ —*Jack Dorsey. Creator, Twitter. Founder and CEO, Square*
 

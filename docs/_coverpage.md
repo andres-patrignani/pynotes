@@ -4,8 +4,8 @@
 
 - An introductory project-based python programming course for environmental scientists
 
-<!-- 
 [GitHub](https://github.com/andres-patrignani/pynotes)
-[Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?filepath=%2Fnotebooks)
--->
-[Docs ▼](#pynotes-in-plant-and-soil-sciences)
+
+[Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?filepath=notebooks)
+
+<!-- [Docs ▼](#pynotes-in-plant-and-soil-sciences) -->
