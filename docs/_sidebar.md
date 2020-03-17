@@ -24,14 +24,13 @@
 * Random
   * [Random module](random_module.md)
   * [Random walk](random_walk.md)
-  * [Random groups](random_groups.ipynb)
+  * [Random groups](random_groups_of_people.md)
   * [Random plots](random_plots.md)
 
 * Data types structures
   * [Data types](data_types.md)
   * [Data structures](data_structures.md)
   * [Indexing and slicing lists](indexing_and_slicing_lists.md)
-  * [Booleans](booleans.md)
   * [Strings](strings.md)
 
 * User inputs
@@ -89,7 +88,7 @@
   * [Error metrics](error_metrics.md)
   * [Linear model](stats_linear_fit.md)
   * [Neutron probe calibration](neutron_probe_calibration.md)
-  * [Anscombe's Quartet](anscombe_quatet.md)
+  * [Anscombe's Quartet](anscombe_quartet.md)
   * [Soil respiration](soil_respiration.md)
   * [Optimal nitogen rate](optimal_nitrogen_rate.md)
   * [Proctor test](proctor_test.md)
@@ -163,7 +162,7 @@
   * [Mixing model](mixing_model.md)
   * [Newton's law of cooling](newton_law_cooling.md)
   * [Lotka-Volterra](lotka_volterra.md)
-  * [Leaky buckets](leaky_buckets.md)
+  * [Leaky bucket](leaky_bucket.md)
 
 * Numerical problems 2D
   * [Conway's Game of Life](game_of_life.md)
