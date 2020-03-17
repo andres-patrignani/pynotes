@@ -29,8 +29,3 @@ Andres Patrignani is an assistant professor in soil water processes in the Depar
 
 - For comments, bug reports, code examples, and suggestions feel free to contact me at andrespatrignani@ksu.edu
 - You can also help me to improve these notes using [GitHub](https://github.com/andres-patrignani/pynotes)
-
-<br/>
-<br/>
-
-*Licensed under [CC BY-SA](https://creativecommons.org/licenses/by-sa/2.0/)*
