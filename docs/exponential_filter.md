@@ -240,8 +240,9 @@ plt.show()
 
 
 ```python
-# Compute ground-truth using th trapezoidal rule to check predictions from our model
-SWC_obs = np.trapz(df.loc[:,["VWC10CM","VWC30CM","VWC50CM","VWC70CM"]], x=[100,300,500,700])
+# Compute ground-truth using the trapezoidal rule to check predictions from our model
+SWC_obs = np.trapz(df.loc[:,["VWC10CM","VWC30CM","VWC50CM","VWC70CM"]], 
+                   x=[100,300,500,700])
 
 ```
 
@@ -263,9 +264,8 @@ def expfilter(timestamp,vwc,mx,mn,T=1):
     Outputs:
     - SWC : Profile soil water content in millimeters
     
-    Author:Pedro Rossini and Andres Patrignani
-    Date: 16-Apr-2019
-    Updated: 14-Mar-2020
+    Author: Pedro Rossini on 16-Apr-2019
+    Updated by Andres Patrignani on 14-Mar-2020
     """
 
     # Pre-allocate arrays
@@ -328,6 +328,7 @@ model = lambda x,a,b,c: expfilter(timestamp,x,a,b,c)
 lb = [200,0,0] # Plausible lower boundaries
 ub = [400,300,100] # Plausible upper boundaries
 
+# This part may take few seconds when working with large datasets
 par_opt, par_cov = curve_fit(model, vwc, SWC_obs, bounds=(lb, ub))
 print(par_opt)
 
@@ -347,11 +348,11 @@ SWC_opt = model(vwc, *par_opt)
 ```python
 # Compute error between observed and model with optimized parameters
 RMSE_opt = np.sqrt(np.mean((SWC_obs - SWC_opt)**2))
-print('Error with guessed parameters:', round(RMSE_opt), 'mm')
+print('Error with optimized parameters:', round(RMSE_opt), 'mm')
 
 ```
 
-    Error with guessed parameters: 7.0 mm
+    Error with optimized parameters: 7.0 mm
 
 
 
