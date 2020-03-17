@@ -15,6 +15,8 @@ We will use the Anaconda environment, which is a set of curated python packages 
 
 * Double click on the installer and follow the steps. When asked, I highly suggest installing VS Code, which is a powerful editor with autocomplition, debugging capabilities, etc.
 
+* In case you are having trouble, visit the Anaconda "Frequently Asked Questions" for some tips on how to troubleshoot most common issues: <https://docs.anaconda.com/anaconda/user-guide/faq/>
+
 ### Step 3: Open Anaconda Navigator
 
 * In Windows go to the start up menu in the bottom left corner of the screen and then click on the Anaconda Navigator.
@@ -26,6 +28,15 @@ We will use the Anaconda environment, which is a set of curated python packages 
 * **VS Code**: A powerful and modern code editor. You can download it and code here if you want.
 
 * **Spyder**: An integrated development environment for scientific coding in Python. It features a graphical user interface similar to that of Matlab.
+
+### Step 4: Update Anoaconda package
+
+* Open Anaconda Navigator
+* Click on the arrow next to "base(root)"
+* Select "Open terminal"
+* Type the following command in the terminal: `conda update --all`
+* Wait few seconds and agree to the update by typing "`y`"
+* The update process may take several minutes. Sometimes the computer will request your authorization for `python` to make changes in your drive. Agree to the changes in order to proceed.
 
 ## Git
 

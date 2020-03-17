@@ -8,6 +8,20 @@ It is also possible to write equations in separate lines using `$$y = e^{-x}$$`:
 
 $$y = e^{-x}$$
 
+
+## External library parser
+To get this to work in Markdown and Github we have to do a little work. Equations may render well in your local Jupyter notebook, but when you upload files to Github we are in a complete different environment. To add simple equations, here is a trick using the equation editor from http://latex.codecogs.com
+
+Here is an example, you will need to do this with each equation (note the position of the opening and closing quotation marks):
+
+```html
+<img src="http://latex.codecogs.com/svg.latex? $1+sin(x)$ " border="0"/>
+```
+
+<img src="http://latex.codecogs.com/svg.latex? $1+sin(x)$ " border="0"/>
+
+
+
 ## Examples
 
 Below is a set of equations obtained from the [FAO 56 manual](http://www.fao.org/docrep/X0490E/X0490E00.htm) to calculate reference evapotranspiration. Use this equations as templates to learn how to implement your own equations.
