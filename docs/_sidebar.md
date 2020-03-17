@@ -158,6 +158,7 @@
 
 * Numerical problems 1D
   * [Soil water storage](soil_water_storage.md)
+  * [Rootzone exponential filter](exponential_filter.md)
   * [Plant available water](plant_available_water.md)
   * [Mixing model](mixing_model.md)
   * [Newton's law of cooling](newton_law_cooling.md)
