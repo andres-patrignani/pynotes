@@ -9,6 +9,7 @@ A hands-on set of python notebooks intended for students that have little or no 
 
 [Github repository](https://github.com/andres-patrignani/pynotes)
 
+
 ## Goals
 
 - Tutorials with real data
