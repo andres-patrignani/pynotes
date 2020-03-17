@@ -4,6 +4,9 @@ A hands-on set of python notebooks intended for students that have little or no 
 
 ## Interactive resources
 
+[Documentation](https://andres-patrignani.github.io/pynotes)
+
+
 [Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?filepath=notebooks)
 (It make take few seconds to few minutes to load the interactive notebooks. For a quick reference consider exploring the Github repository or the PyNotes documentation.)
 
