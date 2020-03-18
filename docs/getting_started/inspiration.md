@@ -1,7 +1,6 @@
-# Motivation
+# Inspiration
 
-The motivation for this book stems from the need to better understand and quantify properties and processes in natural systems, particularly those related the soil-plant-atmosphere continuum.
-
+A short video created by [code.org](code.org) to increase awareness about the importance of code literacy. The footage includes the humble beginning of several successful entrepreneurs.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/nKIu9yen5nc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

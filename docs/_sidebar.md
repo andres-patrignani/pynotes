@@ -1,5 +1,9 @@
+* Resources
+  * [Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?filepath=notebooks)
+  * [Github repository](https://github.com/andres-patrignani/pynotes)
+  
 * Getting started
-  * [Motivation](/getting_started/motivation.md)
+  * [Inspiration](/getting_started/inspiration.md)
   * [Installing software](/getting_started/installing_software.md)
   * [Terminal commands](/getting_started/terminal_commands.md)
   * [Git commands](/getting_started/git_commands.md)
@@ -119,6 +123,7 @@
 
 * Timeseries exercises
   * [Antecedent precipitation index](antecedent_precipitation_index.md)
+  * [Precipitation metrics](precipitation_metrics.md)
   * [Atmospheric carbon dioxide](atmospheric_carbon_dioxide.md)
   * [Atmospheric water defict](atmospheric_water_deficit.md)
   * [Soil moisture drydowns](drydowns_from_timeseries.md)

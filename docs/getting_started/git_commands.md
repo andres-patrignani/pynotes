@@ -1,18 +1,14 @@
 # Useful Git commands
 
-## Set configuration file
+Some of the most widely used git terminal commands. You can run the commands below anywhere, you don't need to be inside any specific directory or repository. Some of these commands will change information in Git's configuration file, so that you don't have to re-type your username and email everytime you make a commit.
 
-You can run the commands below anywhere, you don't need to be inside any specific directory or repository. These commands will change information in Git's configuration file, so that you don't have to re-type your username and email everytime you make a commit.
+`git config --global user.name "john-doe"` In this case my username is: john-doe. The dash in the middle is part of the username.
 
-`git config --global user.name "andres-patrignani"` In this case my username is: andres-patrignani. The dash in the middle is part of the username.
-
-`git config --global user.email andrespatrignani@ksu.edu` In this case see that I did not include the email between quotation marks as I did with the username.
+`git config --global user.email johndoe@abc.org` In this case see that I did not include the email between quotation marks as I did with the username.
 
 `git config --global core.editor "nano"` changes the default editor from "vim" to "nano". In my opinion **nano** is a bit more friendly for beginners. Exit nano by pressing `ctrl + X`
 
 `.gitignore` contains file and folder names that you don't want to keep track of version control. In other words, they will not sync with Github. If you added a rule in the .gitignore file after the file or folder has been added to your Github, you will need to erase the cache of the repository and then add the files again, so that changes take effect. You can do this following these commands: `git rm --cached -r .` and then `git add .`
-
-## Common Git commands
 
 `git clone <repository link>`: Clone repository into your local computer or a remote server. You only clone your repository once. If you work on a server or supercomputer, cloning a repository from a cloud-based platform like Github is much easier than transferring files using the terminal or copy pasting files using a graphical user interface like FileZilla. 
 

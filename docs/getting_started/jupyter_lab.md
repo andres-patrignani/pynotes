@@ -1,5 +1,4 @@
-
-# **Jupyter Lab Notebooks**
+# Jupyter Lab Notebooks
 
 ![alt_text](../_media/jupyter_lab_gui.png "Jupyter Lab GUI")
 *Mac users can use double tap with two fingers for zooming the image*

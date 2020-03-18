@@ -1,6 +1,6 @@
-# **LaTeX equations**
+# LaTeX equations
 
-LaTeX is a typesetting that allows technical writers and scientists to write focusing on the content and without worrying abou the format. LaTeX is free under the terms of the LaTeX Project Public License (LPPL).
+ In the notebooks we use Markdown to write text, but equations are rendered using LaTeX syntax. LaTeX is a typesetting that allows technical writers and scientists to focus on the content without worrying abouT the format. LaTeX is free under the terms of the LaTeX Project Public License (LPPL).
 
 !>A nice feature of LaTeX is that there is a specific syntax for equations. For instance, you can define inline equations so that this: `$y=mx+b$`, get's converted into this: $y=mx+b$
 
@@ -129,15 +129,15 @@ $RHmin$ = minimum relative humidity (%)
 
 $$Ra = \frac{24(60)}{\pi} \hspace{2mm}G \hspace{2mm} dr[\omega\sin(\phi)\sin(\delta)+\cos(\phi)\cos(\delta)\sin(\omega)]$$
 
-$Ra$ = extraterrestrial radiation (MJ / m2 /day)
+$Ra$ = extraterrestrial radiation (MJ/m2/day)
 
 $G$ = solar constant (MJ/m2/min)
 
-$dr$ = 1 + 0.033$\cos$(2$\pi$J/365)
+$dr$ = $1 + 0.033 \cos(2\pi J/365)$
 
 $J$ = number of the day of the year
 
-$\phi$ = $\pi$/180decimal degrees  (latitude in radians)
+$\phi$ = $\pi/180$ decimal degrees  (latitude in radians)
 
 $\delta = 0.409\sin((2\pi J/365)-1.39)\hspace{5mm}$ Solar decimation (rad)
 
