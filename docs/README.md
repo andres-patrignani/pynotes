@@ -28,7 +28,7 @@ Students who successfully complete the material should be able to:
 
 ## About the author
 
-Andres Patrignani is an assistant professor of Soil Water Processes in the Department of Agronomy at Kansas State University. He lives in Manhattan, KS and his primary research interest are in the field of soil physics and hydrology.
+Andres Patrignani is an assistant professor of Soil Water Processes in the Department of Agronomy at Kansas State University. He lives in Manhattan, KS and his primary research interests are in the field of soil physics and hydrology.
 
 
 ## Feedback

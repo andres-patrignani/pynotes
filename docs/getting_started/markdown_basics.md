@@ -1,8 +1,15 @@
 # Markdown basics
 
-Author: Andres Patrignani
+One of the nicest features of the Jupyter notebooks is that we can combine code with documentation written in Markdown. This is excellent to provide additional information without cluttering the code with comments and also allow us to pass rich media such as images, videos, and equations. This is why Jupyter notebooks are so great for both teaching and creating reproducible research.
 
-Github-flavored (Kramdown) official documentation: https://github.github.com/gfm/
+Markdown is a markup language created to speed up formatting without having to write HTML (HyperText markup Language, the language we use to write websites). There is no global standard, and different came up with slightly different variations. The Github-flavored (Kramdown) markdown official documentation can be found here: https://github.github.com/gfm/
+
+The list of example below is only aimed at getting you started. I encourage you to visit the following two links for detailed syntax, cheatsheets, and more comprehensive examples:
+
+- [Adam Pritchard's popular Markdown examples](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
+- [John Gruber's original specifications](https://daringfireball.net/projects/markdown/)
+
 
 ## Comments
 
@@ -14,7 +21,7 @@ Note that this trick might not work in some Markdown editors like Typora, but it
 
 
 ## Line breaks
-Pressing the `enter` key will not generate empty lines. Because Markdown eventually is converted into HTML (HyperText markup Language, the language we use to write websites), we can use HTML tags to expand the editing and styling possibilities in our document. So, to add a line break, we can use the self-closing line break tag: `<br/>`. 
+Pressing the `enter` key will not generate empty lines. Because Markdown eventually is converted into HTML, we can use HTML tags to expand the editing and styling possibilities in our document. So, to add a line break, we can use the self-closing line break tag: `<br/>`. 
 
 ```markdown
 some text
@@ -26,22 +33,16 @@ more text
 
 ## Headers
 
-Represented by adding 1 to 6 leading # signs
+Represented by adding 1 to 6 leading `#` signs
 
 ```none
-# Header
-## Header
-### Header
-#### Header
-##### Header
-###### Header
+# Title header
+## Sub-title header
+### Sub-sub-title header
 ```
-# Header
-## Header
-### Header
-#### Header
-##### Header
-###### Header
+# Title header
+## Sub-title header
+### Sub-sub-title header
 
 
 
@@ -72,15 +73,14 @@ __bold text__
 
 ## Highlighting
 ```none
-`This text is highlighted using backward ticks`
+To calculate the `sin(90)` first import the `math` module`
 ```
 
+To calculate the `sin(90)` first import the `math` module`
 
-
-`This text is highlighted using backward ticks`
 
 ## Monospace font
-    Indent using the Tab key to generate a monospace font.
+    Indent text using the Tab key to generate a monospace font.
 
 ## Inline equations
 
@@ -121,24 +121,20 @@ $$ea = \frac{eTmin\frac{RHmax}{100}+eTmax\frac{RHmin}{100}}{2}​$$
 Use the `>` character to generate block quotes.
 
 ```none
->"Every great developer you know got there by solving problems they were unqualified to solve until they actually did it." *- Patrick McKenzie*
+>"The programmers of tomorrow are the wizards of the future. You're going to look like you have magic powers compared to everybody else." *- Gabe Newell*
 ```
 
-> "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it." *- Patrick McKenzie*
+> "The programmers of tomorrow are the wizards of the future. You're going to look like you have magic powers compared to everybody else." *- Gabe Newell*
 
 ## Bullet lists
+Any of these two alternatives:
 ```none
-- item 1
-- item 2
-- item 3
-```
-or
-```none
-* item 1
-* item 2
-* item 3
+- item 1    * item 1
+- item 2    * item 2
+- item 3    * item 3
 ```
 
+will generate something similar to this:
 - item 1
 - item 2
 - item 3
@@ -155,29 +151,15 @@ or
 2. item 2
 3. item 3
 
-## Mixed lists
-
-
-
-```none
-1. item 1
-    * item 1a
-    * item 1b
-```
-1. item 1
-    - item 1a
-    - item 1b
-
-
 
 ## In-line links
 ```none
-[Github-flavored markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[Github-flavored markdown(https://www.wikiwand.com/en/Home_page)
 ```
 
 
 
-[Github-flavored markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[Github-flavored markdown](https://www.wikiwand.com/en/Home_page)
 
 ## Referenced links
 
@@ -197,41 +179,26 @@ Some more text
 [1]: https://stackedit.io	" Stackedit browser Markdown editor"
 
 
+## Figures
 
-## In-line images
-
-You can use a URL to link images in the web, relative links in repositories, or the path of an image in your local directory
+Figures can be inserted in Markdown following this syntax:
 
 ```none
-![alt_text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt_text](https://path_to_my_image/image.jpg "My image")
 ```
 
 
-
-Here is some text followed by an image: 
-![alt_text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
-Instead of this image from an URL you can also link images in your own computer using the fullpath of the image. You can also use pure HTML code
+Because we many times want to deploy our Markdown in Github, then using pure HTML is the best option:
 ```none
-<img src="sketch.jpg" alt="sketch_image" width="500"/>
-```
-## Referenced images
-
-```none
-logo https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png Logo "Example image"
+<img src="upload.wikimedia.org/wikipedia/en/8/80/Wikipedia-logo-v2.svg" alt="wikipedia_logo" width="100"/>
 ```
 
-
-
-![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Example image"
-
+<img src="https://upload.wikimedia.org/wikipedia/en/8/80/Wikipedia-logo-v2.svg" alt="Soil cracks" width="100"/>
 
 
 ## Horizontal lines
 
-You can use three consecutive dashes, astericks, or underscores
+You can use three consecutive dashes, astericks, or underscores in this fashion:
 
 ```none
 ---
@@ -239,16 +206,9 @@ You can use three consecutive dashes, astericks, or underscores
 ___
 ```
 
+For instance, typing `---`, we obtain the following line:
 
-
-[//]: # "Dashes"
 ---
-
-[//]: # "Asterics"
-***
-
-[//]: # "Underscores"
-___
 
 
 
@@ -289,16 +249,16 @@ print(M)
 Simple tables are easy to write in Markdown. However, adding more than a handful of rows and/or columns can turn out to be a pain. So, if you want to display many lines I suggest using a Markdown table generator. Some Markdown editors have shortcuts and table generators and there are websites exclusively dedicated to generate Markdown tables. Below I show a trivial example:
 
 ```none 
-| item     | quantity  | price |
-|:---------|:---------:|------:|
-| oranges  | 5         | 0.45  |
-| carrots  | 14        | 1.65  |
-| goldfish | 1         | 5.00  |
+| Textural class  | Sand (%) | Clay (%) |
+|:----------------|:--------:|:--------:|
+| Silty clay loam | 10       | 35       |
+| Sandy loam      | 60       | 15       |
+| Clay loam       | 35       | 35       |
 ```
 The leftmost column is left-aligned `:---`, the center column is center-aligned `:---:`, and the righmost column is right-aligned `---:`. The `|` characters don't need to be aligned in order for the Mardown interpreter to properly render the table, but it certainly helps while constructing the table by hand.
 
-| item     | quantity  | price |
-|:---------|:---------:|------:|
-| oranges  | 5         | 0.45  |
-| carrots  | 14        | 1.65  |
-| goldfish | 1         | 5.00  |
+| Textural class  | Sand (%) | Clay (%) |
+|:----------------|:--------:|:--------:|
+| Silty clay loam | 10       | 35       |
+| Sandy loam      | 60       | 15       |
+| Clay loam       | 35       | 35       |
