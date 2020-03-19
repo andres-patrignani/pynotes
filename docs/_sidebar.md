@@ -174,6 +174,8 @@
   * [Conway's Game of Life](game_of_life.md)
   * [Reaction-Diffusion](reaction_diffusion.md)
   * [Efficient Euclidean distance](euclidean_distance.md)
+  * [Disease spread](disease_spread.md)
+
 
 * Clustering
   * [Soil water deficit](soil_water_deficit_classification.md)
