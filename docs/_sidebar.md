@@ -9,7 +9,7 @@
   * [Git commands](/getting_started/git_commands.md)
   * [My first Github repository](/getting_started/my_first_repo.md)
   * [Jupyter Lab](/getting_started/jupyter_lab.md)
-  * [Markdown basics](/docs/getting_started/markdown_basics.md)
+  * [Markdown basics](/getting_started/markdown_basics.md)
   * [LaTeX equations](/getting_started/latex_equations.md)
   * [Alternative python libraries](/getting_started/alt_python_libraries.md)
   * [Hello world](hello_world.md)
