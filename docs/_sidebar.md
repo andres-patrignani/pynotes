@@ -88,7 +88,6 @@
 
 * Curve fitting
   * [Statistics module](statistics_module.md)
-  * [Descriptive statistics](stats_descriptive.md)
   * [Error metrics](error_metrics.md)
   * [Linear model](stats_linear_fit.md)
   * [Neutron probe calibration](neutron_probe_calibration.md)
