@@ -1,30 +1,24 @@
 # Statistics module
 
-A simple Python module to handle some basic statistics. It can also handle numpy arrays. For this exercise we will use data from FAO STATS about arable land in the US. The data set contains arable land data in millions of hectares from 1961 to 2016 for the USA. The abbreviated example only has eleven values from 2006 to 2016 rounded to the nearest million.
+A simple module part of the Python Standard Library to handle basic statistical descriptive metrics. Most of these functions can be accessed through `Numpy` or `Pandas` library, but this module is still relevant when simple statistcs are required without the need for importing larger modules. 
 
+For this exercise we will use data from FAO STATS about arable land in the US. The data set contains arable land data in millions of hectares from 1961 to 2016 for the USA.
 
-Visit official documentation at: <https://docs.python.org/3.4/library/statistics.html>
 
 
 ```python
-import statistics as stats # Only mandatory module for this exercise
-import numpy as np   # Optional
-import pandas as pd  # Optional
-import glob          # Optional
-import matplotlib.pyplot as plt # Just for plotting the data after importing
+import pandas as pd
+import matplotlib.pyplot as plt
+import statistics as stats
 
 ```
 
 
 ```python
 # Navigate to Datasets directory and load example file
-root = '/Users/andrespatrignani/Dropbox/Teaching/Scientific programming/introcoding-spring-2019/'
-glob.os.chdir(root + 'Datasets/')
-df = pd.read_csv('faostats_usa_arable_land.csv')
+df = pd.read_csv('../datasets/faostats_usa_arable_land.csv')
 df.head(5)
-data = df['Value']
 
-df.head(5)
 ```
 
 
@@ -113,8 +107,9 @@ df.head(5)
 # Plot data
 plt.figure()
 plt.plot(df['Year'], df['Value'])
-plt.ylabel('Arable land in million of hectares')
+plt.ylabel('Arable land [million hectares]')
 plt.show()
+
 ```
 
 
@@ -123,140 +118,50 @@ plt.show()
 
 
 ```python
-# In case you don't want to load all the modules for a simple exercise 
-# just use this variable. You can mute the cells above as a comment.
-
-
-# import statistics as stats 
-# data = [160,161,161,157,155,151,155,152,154,152,152]
-```
-
-
-```python
 # Average
-stats.mean(data)
-```
+print("Mean:",stats.mean(df["Value"]))
 
-
-
-
-    177.05856785714286
-
-
-
-
-```python
 # Sample standard deviation of data.
-stats.stdev(data)       
-```
+print(stats.stdev(df["Value"]))
 
-
-
-
-    12.048125424089195
-
-
-
-
-```python
 # Variance
-stats.variance(data)   
-```
+print(stats.variance(df["Value"]))
 
-
-
-
-    145.15732623458445
-
-
-
-
-```python
 # Median 50th percentile of data.
-stats.median(data)          
-```
+print(stats.median(df["Value"]))
 
-
-
-
-    180.815
-
-
-
-
-```python
 # Low median of data.
-stats.median_low(data)      
-```
+print(stats.median_low(df["Value"]))
 
-
-
-
-    180.63
-
-
-
-
-```python
 # High median of data.
-stats.median_high(data)     
-```
+print(stats.median_high(df["Value"]))
 
-
-
-
-    181.0
-
-
-
-
-```python
 # Median, or 50th percentile, of grouped data.
-stats.median_grouped(data)  
-```
+print(stats.median_grouped(df["Value"]))
 
-
-
-
-    180.5
-
-
-
-
-```python
 # Most frequent data
-stats.mode(data)            
-```
+print(stats.mode(df["Value"]))
 
-
-
-
-    187.765
-
-
-
-
-```python
 # Population standard deviation of data.
-stats.pstdev(data)          
-```
+print(stats.pstdev(df["Value"]))
 
-
-
-
-    11.940068304798451
-
-
-
-
-```python
 # Population variance of data.
-stats.pvariance(data)       
+print(stats.pvariance(df["Value"]))
+
 ```
 
-
-
-
+    Mean: 177.05856785714286
+    12.048125424089195
+    145.15732623458445
+    180.815
+    180.63
+    181.0
+    180.5
+    187.765
+    11.940068304798451
     142.56523112325257
 
 
+## References
+
+Visit official documentation at: <https://docs.python.org/3.4/library/statistics.html>
