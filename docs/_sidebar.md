@@ -103,7 +103,7 @@
   * [Soil water retention curve](soil_water_retention_curve.md)
 
 * Probability
-  * [Weather generator](weather_generator.md)
+  * [Rainfall generator](rainfall_generator.md)
   * [Birthday paradox](birthday_paradox.md)
 
 * Decode strings
@@ -126,6 +126,9 @@
   * [Atmospheric carbon dioxide](atmospheric_carbon_dioxide.md)
   * [Atmospheric water defict](atmospheric_water_deficit.md)
   * [Soil moisture drydowns](drydowns_from_timeseries.md)
+  * [Air temperature](air_temperature.md)
+  * [Solar radiation](solar_radiation.md)
+
   * [Soil temperature](soil_temperature.md)
   * [Soil temperature model](soil_temperature_model.md)
 
@@ -174,7 +177,6 @@
   * [Reaction-Diffusion](reaction_diffusion.md)
   * [Efficient Euclidean distance](euclidean_distance.md)
   * [Disease spread](disease_spread.md)
-
 
 * Clustering
   * [Soil water deficit](soil_water_deficit_classification.md)
