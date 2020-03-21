@@ -1,4 +1,4 @@
-## Soil Water Storage
+# Soil Water Storage
 
 Example for calculation of soil water storage using soil moisture data recorded at two different dates and at ten different soil depths using a neutron probe in a wheat field located near Lahoma, OK. The goal is to integrate the soil moisture values along the soil profile for each date to calculate the soil water storage. 
 
