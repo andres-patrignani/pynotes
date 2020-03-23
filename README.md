@@ -21,7 +21,7 @@ If you want to follow along an exercise without forking the entire material or d
 Follow this video to learn how to obtain the link for the raw data.
 
 <video controls="controls" width="800" height="600" 
-       name="Video Name" src="https://github.com/andres-patrignani/pynotes/tree/master/docs/_media/get_raw_url_link_dataset.m4v"></video>
+       name="Video Name" src="get_raw_url_link_dataset.m4v"></video>
 
 ## Feedback
 
