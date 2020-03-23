@@ -552,7 +552,7 @@ print(stats.tmean(residuals))
 
 # Always plot residuals
 plt.figure()
-plt.scatter(df["SOILTMP5AVG655"], residuals, marker='o', color='g', alpha=0.3)
+plt.scatter(df["TEMP2MAVG"], residuals, marker='o', color='g', alpha=0.3)
 plt.xlabel("Observed air temperature at 2 meters (Celsius) ")
 plt.ylabel("Residuals (Celsius) ")
 plt.show()
