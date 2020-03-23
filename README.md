@@ -1,4 +1,4 @@
-# PyNotes for Plant and Soil Scientists
+# PyNotes for Environmental Scientists
 
 A hands-on set of python notebooks intended for students that have little or no programming experience and are interested in acquiring basic programming skills. The Python notes focus on understanding programming logic by developing codes for automating and increasing the reproducibility of common tasks in plant and soil sciences.
 
@@ -9,6 +9,19 @@ A hands-on set of python notebooks intended for students that have little or no 
 [Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?filepath=notebooks)
 (It make take few seconds to few minutes to load the interactive notebooks. For a quick reference consider exploring the Github repository or the PyNotes documentation.)
 
+
+## Loading datasets
+
+The real datasets used along these notebooks can be found in the `/datasets` directory. Throughout the examples it is assumed that the Python interpreter of the Jupyter Lab is in the `pynotes/notebooks` directory, reason why the exercises load datasets as `pd.read_csv("../datasets/file.csv")`. 
+
+If you want to follow along an exercise without forking the entire material or downloading the datasets, you can always read the data directly from the Github repository, just make sure you get the URL link for the "Raw" data. FOr example:
+
+`pd.read_csv('https://raw.githubusercontent.com/andres-patrignani/pynotes/master/datasets/anscombe_quartet.csv')`
+
+Follow this video to learn how to obtain the link for the raw data.
+
+<video controls="controls" width="800" height="600" 
+       name="Video Name" src="https://github.com/andres-patrignani/pynotes/tree/master/docs/_media/get_raw_url_link_dataset.m4v"></video>
 
 ## Feedback
 

@@ -128,7 +128,6 @@
   * [Soil moisture drydowns](drydowns_from_timeseries.md)
   * [Air temperature](air_temperature.md)
   * [Solar radiation](solar_radiation.md)
-
   * [Soil temperature](soil_temperature.md)
   * [Soil temperature model](soil_temperature_model.md)
 
