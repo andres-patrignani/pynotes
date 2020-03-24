@@ -1,5 +1,5 @@
 * Resources
-  * [Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?filepath=notebooks)
+  * [Interactive notebooks](https://mybinder.org/v2/gh/andres-patrignani/pynotes/master?urlpath=lab)
   * [Github repository](https://github.com/andres-patrignani/pynotes)
   
 * Getting started
@@ -93,7 +93,7 @@
   * [Neutron probe calibration](neutron_probe_calibration.md)
   * [Anscombe's Quartet](anscombe_quartet.md)
   * [Soil respiration](soil_respiration.md)
-  * [Optimal nitogen rate](optimal_nitrogen_rate.md)
+  * [Optimal nitrogen rate](optimal_nitrogen_rate.md)
   * [Proctor test](proctor_test.md)
   * [Match sensor readings](cdf_matching.md)
   * [Multiple linear regression](stats_multiple_linear_regression.md)
