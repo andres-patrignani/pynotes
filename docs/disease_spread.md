@@ -9,7 +9,7 @@ Incorporating these and many more variables, even for a small country, could tak
 The code below is by no means intended for research use, but it may serve as the basis for creating simple models with few individuals or animals, perhaps something like the spread of a disease within animals in a pasture.
 
 
-## Ground rules and code decisions
+## Ground rules and coding decisions
 
 - Dead people will be masked from computations by assigning a value of NaN (using `np.nan`).
 
@@ -19,17 +19,31 @@ The code below is by no means intended for research use, but it may serve as the
 
 - The model does not considered the race, age, sex, or physical condition of the individuals.
 
+- At the 14 day mark, all infected people that did not die automatically recover.
+
+- Recovered individuals become immune to the virus and do not become infected again, even if they interact with an infected individual multiple times during the simulation.
+
+- There is no "bouncing" when there is contact with another individual as in the original simulation by Stevens. Individuals in this version only change direction when they hit an edge.
+
+- People can die after the 10 day of being infected. This is a proxy for leaving the 
+
+
+
+
+## Inspiration
+
+The code implemented in this notebook was inspired by an article published in the Washington post about a made-up illness called simulities written by Harry Stevens (see references for more details). The code is not an exact replica of the simulation in the article by Stevens, but my own interpretation, where I aimed for simplicity so that new coders with some handle of Python can understand the flow of the code.
+
 
 
 ```python
 # Import modules
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 from IPython.display import clear_output
 
 import warnings
-warnings.filterwarnings("ignore",category =RuntimeWarning)
+warnings.filterwarnings("ignore",category=RuntimeWarning)
 
 ```
 
@@ -46,15 +60,22 @@ def edist(x,y):
 
 
 ```python
-# Simulation space and time constraints
+# Simulation space constraints
 xmin = 0      # Left system boundary
 xmax = 100    # Right system boundary
 ymin = 0      # Lower system boundary
 ymax = 100    # Upper system boundary
-T = 200       # Number of time steps
+
+# Simulation time constraints
+dt_ = 1/24     # Fraction of day
+simulation_days = 30 # Number of simulation days
+simulation_steps = round(simulation_days/dt_)
+time_counter = 0
+simulation_time = np.array([0])
 
 # Existing population
-N = 200       # Number of live individuals
+N = 100       # Number of live individuals
+N_seed = 10   # Individuals infected at the epicenter
 live = np.ones(N, dtype=bool)
 dead = np.zeros(N, dtype=bool)
 
@@ -69,22 +90,23 @@ y = np.random.uniform(ymin,ymax,N)
 theta = np.radians(np.random.uniform(0,360,N))
 
 # Compute percentage of people circulating
-activity_rate = np.ones(N)    
-fraction_static = 0.1  # Change this to keep people static (at home)
+speed = 0.1 # rate at which individuals move.
+activity_rate = np.ones(N) * speed  
+fraction_static = 0  # Change this to keep people static (at home)
 static_individuals = np.random.randint(low=0, high=N, size=round(N*fraction_static))
 activity_rate[static_individuals] = 0 
 
 # Social distancing
-social_distance = 5 # arbitrary units
+social_distance = 2 # arbitrary units
 
 # Death rate 
 death_rate = 2/100
 
-# Initialize quanrentine time for infected
+# Initialize quanrentine time for infected individuals
 quarentine_time = np.zeros(N)
 
 # Inoculate a small group of individuals
-infected_seeds = np.random.randint(low=0, high=N, size=2)
+infected_seeds = np.random.randint(low=0, high=N, size=N_seed)
 infected[infected_seeds] = True
 normal[infected_seeds] = False
 
@@ -96,8 +118,12 @@ total_infected = infected.sum()
 total_recovered = recovered.sum()
 
 # Start recursive iteration
-for t in range(1,T):
+for t in range(simulation_steps):
    
+    # Track time
+    time_counter += dt
+    simulation_time = np.append(simulation_time, time_counter)
+    
     # Compute next positions of individuals
     x = x + activity_rate * np.cos(theta)
     y = y + activity_rate * np.sin(theta)
@@ -108,33 +134,28 @@ for t in range(1,T):
     idx_bnd = idx_x | idx_y
 
     # Change trajectory angle if hit boundary
-    theta[idx_bnd] = np.random.uniform(0,360,np.sum(idx_bnd)) # np.abs(theta[idx_bnd] - 45) #
+    theta[idx_bnd] = np.random.uniform(0,360,np.sum(idx_bnd)) # np.abs(theta[idx_bnd] - 45)
     
     # Determine whether two individuals come in contact
     E = edist(x,y)
     E[np.eye(N, dtype='bool')] = np.inf # Set selfs to inf to avoid being selected.
     rows,cols = np.where(E <= social_distance)
-    idx_contact = np.zeros(N, dtype="bool")
-    idx_contact[rows] = True
     
-    # Change trajectory angle if contact between two people
-    theta[idx_contact] = np.random.uniform(0,360,np.sum(idx_contact))
-
     # New infected live individuals
-    idx_infected = infected[rows] | infected[cols]
+    idx_infected = infected[rows] | infected[cols] & ~recovered[rows]
     infected[rows[idx_infected]] = True
     normal[rows[idx_infected]] = False
-    
+
     # Recovery of infected individuals that reached quarentine
     quarentine_time[infected] += 1
-    idx_recovered = quarentine_time == 15
+    idx_recovered = quarentine_time == round(14/dt)
     quarentine_time[idx_recovered] = 0
     recovered[idx_recovered] = True
     normal[idx_recovered] = False
     infected[idx_recovered] = False
-    
+
     # Remove dead individuals from population
-    idx_potential_dead = infected & (quarentine_time > 10)
+    idx_potential_dead = infected & (quarentine_time == round(14/dt))
     daily_probability_dead = np.random.rand(N)
     daily_probability_dead[~idx_potential_dead] = 0 # Unnecessary line, but left for completeness and logic
     idx_dead = daily_probability_dead >= (1-death_rate)
@@ -143,25 +164,29 @@ for t in range(1,T):
     # Update live population counts
     live[idx_dead] = False
     infected[idx_dead] = False
+    recovered[idx_dead] = False
     normal[idx_dead] = False
+    
+    # Convert positions of dead individuals to NaN
+    #quarentine_time[idx_recovered] = np.nan
     x[idx_dead] = np.nan
     y[idx_dead] = np.nan
     theta[idx_dead] = np.nan
     
     # Compute totals
-    total_live = np.append(total_live,live.sum())
-    total_dead = np.append(total_dead,dead.sum())
-    total_normal = np.append(total_normal,normal.sum())
-    total_infected = np.append(total_infected,infected.sum())
-    total_recovered = np.append(total_recovered,recovered.sum())
+    total_live = np.append(total_live, live.sum())
+    total_dead = np.append(total_dead, dead.sum())
+    total_normal = np.append(total_normal, normal.sum())
+    total_infected = np.append(total_infected, infected.sum())
+    total_recovered = np.append(total_recovered, recovered.sum())
     
     # Plot chart with current positions and health
+    plt.figure(figsize=(18,8))
     clear_output(wait=True)
-    plt.figure(figsize=(12,4))
     plt.subplot(1,2,1)
-    plt.scatter(x[normal],y[normal],marker='o',facecolor='w',edgecolor='k',label='Normal')
-    plt.scatter(x[infected],y[infected],marker='o',facecolor='y',edgecolor='k',label='Infected')
-    plt.scatter(x[recovered],y[recovered],marker='o',facecolor='b',edgecolor='k',label='Recovered')
+    plt.scatter(x[normal],y[normal],s=40, marker='o',facecolor='w',edgecolor='k', linewidth=0.5, label='Normal')
+    plt.scatter(x[infected],y[infected],s=40,marker='o',facecolor='orange',edgecolor='k',linewidth=0.5,label='Infected')
+    plt.scatter(x[recovered],y[recovered],s=40,marker='o',facecolor='green',edgecolor='k',linewidth=0.5, alpha=0.85, label='Recovered')
     plt.legend(loc='upper center', bbox_to_anchor=(0.5,-0.1))
     
     # Set limits of the plot to improve rendering at the boundaries
@@ -170,16 +195,16 @@ for t in range(1,T):
     
     # Plot progression of health condition
     plt.subplot(1,2,2)
-    plt.plot(range(t+1),total_infected, '-y',label='Infected')
-    plt.plot(range(t+1),total_recovered, '-b',label='Recovered')
-    plt.plot(range(t+1),total_dead, '-r',label='Dead')
-    plt.annotate("Initial population="+str(live.size), xy=(1,N-15))
-    plt.annotate("Live population="+str(live.sum()), xy=(1,N-30))
-    plt.xlim(0,T)
+    plt.plot(simulation_time,total_infected, linestyle='-', color='orange',label='Infected')
+    plt.plot(simulation_time,total_recovered, '--g',label='Recovered')
+    plt.plot(simulation_time,total_dead, '-r',label='Dead')
+    plt.xlim(0,simulation_days)
     plt.ylim(0,N)
-    plt.legend(loc='upper right',bbox_to_anchor=(1.4,1))
+    plt.legend(loc='upper right', fontsize=12)
+    plt.annotate("Live population=" + str(live.sum()), xy=(5,N-5), size=16)
+    #plt.legend(loc='upper right',bbox_to_anchor=(1.5,1), fontsize=14)
+    #plt.annotate("Live population="+str(live.sum()), xy=(T+10,N/2.5), annotation_clip=False)
     plt.show()
-    print(normal.sum() + recovered.sum() + infected.sum() + dead.sum())
     
 ```
 
@@ -187,5 +212,6 @@ for t in range(1,T):
 ![png](disease_spread_files/disease_spread_3_0.png)
 
 
-    325
+## References
 
+"Why outbreaks like coronavirus spread exponentially, and how to flatten the curve" by Harry Stevens. Published on March 14, 2020 by the Washington Post. [Full story](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/).
