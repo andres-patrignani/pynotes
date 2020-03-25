@@ -1,25 +1,29 @@
 # PyNotes for Environmental Scientists
 
-A set of hands-on coding exercises in Python focused on understanding programming logic by developing codes for automating and increasing the reproducibility of common tasks in disciplines that study the soil-plant-atmosphere continuum.
+A set of hands-on coding exercises to solve common tasks and problems in environmental sciences, soil science, and agronomy.
+
 
 ## Audience 
 
-The notes were developed for gradaute students in environmental science, soil science, and agronomy programs with little or no programming experience, but anyone interested in learning how to code and with sufficient discipline to follow along the notes should find this content useful. 
+This material is part of an introductory graduate level course offered to students with little or no programming experience in environmental sciences, soil science, and agronomy; but anyone interested in learning how to code and with sufficient discipline to follow along the notes should find this content useful. The material is aimed at individuals seeking to be more productive, work faster, handle larger datasets, stimulate creative data analysis, develop code for self-teaching environmental processes, and generate reproducible science.
 
-The Python language was selected because of its simple syntax, vast adoption as a numerical software by the scientific community, and free availability. The code in these notes is intended to be simple and explicit, and code expressions may not be the most efficient or *pythonic*. Similarly, many notebooks are presented in the form of a script rather than a function, with the goal of inspecting and plotting local variables to allow a step-by-step exploration of the code.
+The Python language was selected because it is free, has a relatively straightforard and simple syntax, has been widely adopted by the scientific community, and contains a rich ecosystem of linraries and tools for generating reproducible research (e.g. Jupyter Notebooks). 
+
+These notes are intended to be simple and explicit, and code expressions may not be the most efficient or *pythonic*. As students progress through the examples, they will become more familiar with the syntax, documentation sources, and eventually will be able to write more compact code and add extra layers of complexity to the existing code. 
 
 
 ## Motivation
 
-This set of Python notes stems from the need to increase code literacy in students pursuing a career in environmental sciences. With the advent of technological advances and automated data collection systems, scientific programming is becoming a highly empowering skill. This content is aimed at students in the research world so that they can be more productive, work faster, handle larger datasets, stimulate creative data analysis, develop code for self-teaching concepts and processes in environmental science, and generate reproducible science. This set of notebooks is aimed at learners that want to focus on research and data analysis. 
+The Python notes stem from the need to increase code literacy in students pursuing a career in environmental sciences. With the advent of technological advances and automated data collection systems, scientific programming is becoming an essential skill for reproducible data analysis.
 
 The three main aspects that motivated this material are:
 
 1. The lack of online examples including real datasets in environmental sciences. The material presented in this series of Jupyter notebooks relies entirely on data from published studies in peer-reviwed journals or data collected by the author and his students as part of past and present research efforts;
 
-2. The vast amount of existing material about coding is either aimed at the general public or students proficient ina t least one language, both of which have little appeal to graduate students and early career scientists in environmental sciences.
+2. The vast amount of existing material about coding is either aimed at the general public with trivial examples or students familiar with advanced concepts in computer science, both of which have little appeal to graduate students and early career scientists in environmental sciences that are learning to write code for the first time.
 
-3. I wanted to create a set of short, interactive, and reproducible scripts and snippets in the form of notebooks that students can download and execute anytime. While the content of these notebooks may not be as extensive as in hard copy books, students can take advantage of tools such as [Github](https://github.com) and [Binder](https://mybinder.org) to gain access to the entire material and start coding in a matter of minutes.
+3. I wanted to create a set of short, interactive, and reproducible scripts in the form of notebooks that students can download and execute anytime. Students can take advantage of tools such as [Github](https://github.com) and [Binder](https://mybinder.org) to gain access to the entire material and start coding in a matter of minutes.
+
 
 ## Goals
 
@@ -52,4 +56,5 @@ This initiative is partially supported by the Kansas State University [Open/Alte
 
 
 ## License
+
 All the code in these Jupyter notebooks has been written entirely by the author unless noted otherwise. The entire material is available for free under the Creative Commons Attribution-NonCommercial-ShareAlike ([CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/)) license
