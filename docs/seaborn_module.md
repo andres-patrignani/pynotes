@@ -12,10 +12,11 @@ import seaborn as sns
 
 ```
 
-## Correlogram
+## Correlogram weather variables
 
 
 ```python
+# Load sample weather data
 df = pd.read_csv("../datasets/gypsum_ks_daily_2018.csv")
 df.fillna(method="bfill", inplace=True)
 df.head()
@@ -196,6 +197,7 @@ df.head()
 
 
 ```python
+# Convert dates to Pandas datetime
 df["TIMESTAMP"] = pd.to_datetime(df["TIMESTAMP"], format="%m/%d/%y %H:%M")
 df["MONTH"] = df["TIMESTAMP"].dt.month_name()
 
@@ -203,6 +205,7 @@ df["MONTH"] = df["TIMESTAMP"].dt.month_name()
 
 
 ```python
+# Create subset with selected variables
 df_subset = df[["MONTH","PRESSUREAVG","TEMP2MAVG","SOILTMP5AVG655"]]
 df_subset.head()
 
@@ -279,28 +282,257 @@ df_subset.head()
 
 
 ```python
+# Create correlogram
 sns.pairplot(df_subset, kind="scatter", hue="MONTH", palette="Set2")
 plt.show()
+
 ```
 
 
 ![png](seaborn_module_files/seaborn_module_6_0.png)
 
 
-## Heatmap
+## Heatmap Coronavirus
 
 
 ```python
-df = pd.read_csv("../datasets/fargo_hourly_deep_soil_temperature.csv")
-df["time_cst"] = pd.to_datetime(df["time_cst"], format="%m/%d/%y %H:%M")
-df["MONTH"] = df["time_cst"].dt.month
+# Load data
+df_confirmed = pd.read_csv("../datasets/coronavirus_main_affected_regions_confirmed.csv")
+df_recovered = pd.read_csv("../datasets/coronavirus_main_affected_regions_recovered.csv")
+
+# Set Countr/Region as the index
+df_confirmed.set_index("Country/Region", inplace=True)
+df_recovered.set_index("Country/Region", inplace=True)
+
+# Subtract the dataframes (they have the same number of rows and columns)
+df_change = df_confirmed.subtract(df_recovered)
+df_change.head()
 
 ```
 
 
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th>22-Jan-2020</th>
+      <th>23-Jan-2020</th>
+      <th>24-Jan-2020</th>
+      <th>25-Jan-2020</th>
+      <th>26-Jan-2020</th>
+      <th>27-Jan-2020</th>
+      <th>28-Jan-2020</th>
+      <th>29-Jan-2020</th>
+      <th>...</th>
+      <th>14-Mar-2020</th>
+      <th>15-Mar-2020</th>
+      <th>16-Mar-2020</th>
+      <th>17-Mar-2020</th>
+      <th>18-Mar-2020</th>
+      <th>19-Mar-2020</th>
+      <th>20-Mar-2020</th>
+      <th>21-Mar-2020</th>
+      <th>22-Mar-2020</th>
+      <th>23-Mar-2020</th>
+    </tr>
+    <tr>
+      <th>Country/Region</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Japan</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>6</td>
+      <td>6</td>
+      <td>...</td>
+      <td>655</td>
+      <td>721</td>
+      <td>681</td>
+      <td>734</td>
+      <td>745</td>
+      <td>774</td>
+      <td>772</td>
+      <td>775</td>
+      <td>851</td>
+      <td>851</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>19191</td>
+      <td>22412</td>
+      <td>25231</td>
+      <td>28565</td>
+      <td>31688</td>
+      <td>36595</td>
+      <td>42581</td>
+      <td>47506</td>
+      <td>52114</td>
+      <td>52114</td>
+    </tr>
+    <tr>
+      <th>Spain</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>5874</td>
+      <td>7281</td>
+      <td>9412</td>
+      <td>10720</td>
+      <td>12829</td>
+      <td>16856</td>
+      <td>18822</td>
+      <td>23249</td>
+      <td>26193</td>
+      <td>26193</td>
+    </tr>
+    <tr>
+      <th>Egypt</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>82</td>
+      <td>89</td>
+      <td>123</td>
+      <td>164</td>
+      <td>164</td>
+      <td>224</td>
+      <td>246</td>
+      <td>253</td>
+      <td>271</td>
+      <td>271</td>
+    </tr>
+    <tr>
+      <th>Switzerland</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1355</td>
+      <td>2196</td>
+      <td>2196</td>
+      <td>2696</td>
+      <td>3013</td>
+      <td>4060</td>
+      <td>5279</td>
+      <td>6560</td>
+      <td>7114</td>
+      <td>7114</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 64 columns</p>
+</div>
+
+
+
+
 ```python
+# Create heatmap
+plt.figure(figsize=(14,10))
+sns.heatmap(df_change, linewidths=0.1, cmap="YlGnBu")
+plt.show()
+
+```
+
+
+![png](seaborn_module_files/seaborn_module_9_0.png)
+
+
+## Heatmap soil temperature
+
+
+```python
+# Load data
+df = pd.read_csv("../datasets/fargo_hourly_deep_soil_temperature.csv")
+
+# Convert dates to Pandas datetime format
+df["time_cst"] = pd.to_datetime(df["time_cst"], format="%m/%d/%y %H:%M")
+
+# Summarize data by month
+df["MONTH"] = df["time_cst"].dt.month
 df_grouped = df.groupby(["MONTH"]).mean().round(2)
-df_grouped
+df_grouped.head()
 
 ```
 
@@ -444,125 +676,6 @@ df_grouped
       <td>4.18</td>
       <td>4.21</td>
     </tr>
-    <tr>
-      <th>6</th>
-      <td>19.87</td>
-      <td>18.88</td>
-      <td>17.44</td>
-      <td>16.19</td>
-      <td>15.14</td>
-      <td>14.20</td>
-      <td>13.32</td>
-      <td>11.74</td>
-      <td>10.44</td>
-      <td>9.12</td>
-      <td>8.08</td>
-      <td>7.26</td>
-      <td>6.75</td>
-      <td>6.26</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>22.32</td>
-      <td>21.42</td>
-      <td>20.18</td>
-      <td>19.09</td>
-      <td>18.16</td>
-      <td>17.30</td>
-      <td>16.50</td>
-      <td>15.02</td>
-      <td>13.75</td>
-      <td>12.36</td>
-      <td>11.19</td>
-      <td>10.18</td>
-      <td>9.44</td>
-      <td>8.67</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>20.93</td>
-      <td>20.45</td>
-      <td>19.75</td>
-      <td>19.09</td>
-      <td>18.49</td>
-      <td>17.94</td>
-      <td>17.40</td>
-      <td>16.36</td>
-      <td>15.39</td>
-      <td>14.26</td>
-      <td>13.24</td>
-      <td>12.31</td>
-      <td>11.52</td>
-      <td>10.68</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>16.96</td>
-      <td>16.90</td>
-      <td>16.80</td>
-      <td>16.68</td>
-      <td>16.52</td>
-      <td>16.33</td>
-      <td>16.11</td>
-      <td>15.62</td>
-      <td>15.08</td>
-      <td>14.39</td>
-      <td>13.72</td>
-      <td>13.06</td>
-      <td>12.49</td>
-      <td>11.80</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>9.23</td>
-      <td>9.75</td>
-      <td>10.47</td>
-      <td>11.04</td>
-      <td>11.48</td>
-      <td>11.82</td>
-      <td>12.10</td>
-      <td>12.47</td>
-      <td>12.64</td>
-      <td>12.66</td>
-      <td>12.54</td>
-      <td>12.33</td>
-      <td>12.12</td>
-      <td>11.74</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2.16</td>
-      <td>2.92</td>
-      <td>4.10</td>
-      <td>5.12</td>
-      <td>5.99</td>
-      <td>6.70</td>
-      <td>7.36</td>
-      <td>8.42</td>
-      <td>9.17</td>
-      <td>9.84</td>
-      <td>10.29</td>
-      <td>10.55</td>
-      <td>10.74</td>
-      <td>10.75</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>-2.24</td>
-      <td>-1.49</td>
-      <td>-0.28</td>
-      <td>0.73</td>
-      <td>1.62</td>
-      <td>2.39</td>
-      <td>3.12</td>
-      <td>4.40</td>
-      <td>5.41</td>
-      <td>6.45</td>
-      <td>7.27</td>
-      <td>7.94</td>
-      <td>8.53</td>
-      <td>8.93</td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -571,14 +684,15 @@ df_grouped
 
 
 ```python
+# Create Heatmap
 plt.figure(figsize=(14,10))
-sns.heatmap(df_grouped.T, annot=True, linewidths=1)
+sns.heatmap(df_grouped.T, annot=True, linewidths=1, cmap="RdBu_r")
 plt.show()
 
 ```
 
 
-![png](seaborn_module_files/seaborn_module_10_0.png)
+![png](seaborn_module_files/seaborn_module_12_0.png)
 
 
 ## Boxplot
@@ -593,5 +707,5 @@ sns.despine(offset=20, trim=True)
 ```
 
 
-![png](seaborn_module_files/seaborn_module_12_0.png)
+![png](seaborn_module_files/seaborn_module_14_0.png)
 
