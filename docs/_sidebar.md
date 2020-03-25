@@ -74,6 +74,7 @@
 
 * Figures
   * [Matplotlib module](matplotlib_module.md)
+  * [Seaborn module](seaborn_module.md)
 
 * Data science modules
   * [Numpy module](numpy_module.md)
