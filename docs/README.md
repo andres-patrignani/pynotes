@@ -34,6 +34,18 @@ Students who successfully complete the material should be able to:
 - find information independently for self-teaching and problem solving.
 - learn good programming habits and basic reproducible research practices by following short exercises using real data.
 
+## Datasets
+
+The datasets used along these notebooks can be found in the `/datasets` directory of the Github repository. Throughout the examples it is assumed that the Python interpreter of the Jupyter notebook is in the `pynotes/notebooks` directory, reason why the directories are relative to this path in the exercises, for example: `pd.read_csv("../datasets/file.csv")`. 
+
+If you want to follow along an exercise without downloading the entire material, you can always read the data directly from the Github repository, just make sure you get the URL link for the "Raw" data. For example, to read the Anscombe's dataset:
+
+`pd.read_csv('https://raw.githubusercontent.com/andres-patrignani/pynotes/master/datasets/anscombe_quartet.csv')`
+
+Follow this video to learn how to obtain the link for the raw data.
+
+<video loop autoplay="autoplay" width="100%" name="Video Name" src="_media/read_dataset_from_github.mp4"></video>
+
 
 ## About the author
 
