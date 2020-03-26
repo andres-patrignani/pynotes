@@ -1,5 +1,7 @@
 # PyNotes for Environmental Scientists
 
+<a href="https://zenodo.org/badge/latestdoi/181793782"><img src="https://zenodo.org/badge/181793782.svg" alt="DOI"><a>
+
 A hands-on set of python notebooks intended for students that have little or no programming experience and are interested in acquiring basic programming skills. The Python notes focus on understanding programming logic by developing codes for automating and increasing the reproducibility of common tasks in plant and soil sciences.
 
 ## Interactive resources
@@ -12,16 +14,16 @@ A hands-on set of python notebooks intended for students that have little or no 
 
 ## Loading datasets
 
-The real datasets used along these notebooks can be found in the `/datasets` directory. Throughout the examples it is assumed that the Python interpreter of the Jupyter Lab is in the `pynotes/notebooks` directory, reason why the exercises load datasets as `pd.read_csv("../datasets/file.csv")`. 
+The datasets used along these notebooks can be found in the `/datasets` directory of the Github repository. Throughout the examples it is assumed that the Python interpreter of the Jupyter notebook is in the `pynotes/notebooks` directory, reason why the directories are relative to this path in the exercises, for example: `pd.read_csv("../datasets/file.csv")`. 
 
-If you want to follow along an exercise without forking the entire material or downloading the datasets, you can always read the data directly from the Github repository, just make sure you get the URL link for the "Raw" data. FOr example:
+If you want to follow along an exercise without downloading the entire material, you can always read the data directly from the Github repository, just make sure you get the URL link for the "Raw" data. For example, to read the Anscombe's dataset:
 
 `pd.read_csv('https://raw.githubusercontent.com/andres-patrignani/pynotes/master/datasets/anscombe_quartet.csv')`
 
 Follow this video to learn how to obtain the link for the raw data.
 
-<video controls="controls" width="800" height="600" 
-       name="Video Name" src="get_raw_url_link_dataset.m4v"></video>
+<video loop autoplay="autoplay" width="100%" name="Video Name" src="doc/_media/read_dataset_from_github.mp4"></video>
+
 
 ## Feedback
 

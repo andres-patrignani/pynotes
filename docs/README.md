@@ -2,6 +2,8 @@
 
 A set of hands-on coding exercises to solve common tasks and problems in environmental sciences, soil science, and agronomy.
 
+<a href="https://zenodo.org/badge/latestdoi/181793782"><img src="https://zenodo.org/badge/181793782.svg" alt="DOI"><a>
+
 
 ## Audience 
 
