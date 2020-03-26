@@ -5,10 +5,10 @@
 * Getting started
   * [Inspiration](/getting_started/inspiration.md)
   * [Installing software](/getting_started/installing_software.md)
+  * [Reproducible research](/getting_started/reproducible_research.md)
   * [Terminal commands](/getting_started/terminal_commands.md)
   * [Git commands](/getting_started/git_commands.md)
   * [My first Github repository](/getting_started/my_first_repo.md)
-  * [Jupyter Lab](/getting_started/jupyter_lab.md)
   * [Markdown basics](/getting_started/markdown_basics.md)
   * [LaTeX equations](/getting_started/latex_equations.md)
   * [Alternative python libraries](/getting_started/alt_python_libraries.md)
