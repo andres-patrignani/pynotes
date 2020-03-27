@@ -1,5 +1,6 @@
 # PyNotes for Environmental Scientists
 
+<a href="https://zenodo.org/badge/latestdoi/181793782"><img src="https://zenodo.org/badge/181793782.svg" alt="DOI"><a>
 
 A hands-on set of python notebooks intended for students that have little or no programming experience and are interested in acquiring basic programming skills. The Python notes focus on understanding programming logic by developing codes for automating and increasing the reproducibility of common tasks in plant and soil sciences.
 
