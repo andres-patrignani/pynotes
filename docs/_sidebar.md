@@ -102,6 +102,8 @@
   * [Exponential decay](stats_curve_fitting_exp.md)
   * [Cosine wave](stats_curve_fitting_wave.md)
   * [Soil water retention curve](soil_water_retention_curve.md)
+  * [Atmospheric carbon dioxide](atmospheric_carbon_dioxide.md)
+
 
 * Probability
   * [Rainfall generator](rainfall_generator.md)
@@ -124,7 +126,6 @@
 * Timeseries exercises
   * [Antecedent precipitation index](antecedent_precipitation_index.md)
   * [Precipitation metrics](precipitation_metrics.md)
-  * [Atmospheric carbon dioxide](atmospheric_carbon_dioxide.md)
   * [Atmospheric water defict](atmospheric_water_deficit.md)
   * [Soil moisture drydowns](drydowns_from_timeseries.md)
   * [Air temperature](air_temperature.md)
