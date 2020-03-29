@@ -157,6 +157,7 @@
 * Mapping
   * [Cumulative rainfall](cumulative_rainfall.md)
   * [Soil moisture](soil_moisture_map.md)
+  * [Field random samples](field_random_samples.md)
   
 * Model implementation
   * [Soil temperature model](soil_temperature_model.md)
