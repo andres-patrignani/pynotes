@@ -1,10 +1,12 @@
 # Soil Cracks
 
-Some soil exhibit shrinking (when drying) and swelling (when wetting) with soil moisture changes. Soil cracks emerge as a consequence of the conformational changes in the structure of clay minerals with changes in soil moisture. Soil cracks can lead to preferential water flow and rapid solute and contaminants transport to deeper soil layers. Soil expansion and contraction can also affect building foundations. Expansive soils are usually characterized by moderate to high clay content, particularly in soils with high content of montmorillonite, a typical clay in vertisols.
+Soil cracks emerge as a consequence of the conformational changes in the structure of clay minerals with changes in soil moisture that causes the soil to shrink (while drying) and swell (while wetting). Expansive soils are usually characterized by moderate to high clay content, particularly in soils with high content of montmorillonite, a typical clay in vertisols. Soil cracks can lead to preferential water flow and rapid solute transport to deeper soil layers, and the expansion and contraction cof the soil can have adverse effects on building foundations.
 
 >Montmorillonite can increase fifteen times its dry volume and can exhert an expansive pressure of 150,000 kg per square meter!
 
-In addition to that, the resulting patterns formed by the soil cracks are attractive to scientisits and enthusiasts interested in fractal patterns.
+From the aesthetic point of view, the seemingly random cracking patterns also result attractive to scientists and enthusiasts interested in fractal patterns.
+
+In this exercise we will identify soil cracks from a digital image using filters to detect tubular structures.
 
 
 
@@ -18,7 +20,14 @@ from skimage import io, color, morphology, filters
 
 
 ```python
+# Read image
 RGB = io.imread("../datasets/soil_cracks.jpg")
+
+```
+
+
+```python
+# Display image size
 RGB.shape
 
 ```
@@ -32,13 +41,14 @@ RGB.shape
 
 
 ```python
-# Gray scale version
+# Convert RGB to gray scale
 BW = color.rgb2gray(RGB)
 
 ```
 
 
 ```python
+# Compare true color with gray scale image
 plt.figure(figsize=(12,8))
 plt.subplot(1,2,1)
 plt.imshow(RGB)
@@ -53,7 +63,7 @@ plt.show()
 ```
 
 
-![png](soil_cracks_detection_files/soil_cracks_detection_4_0.png)
+![png](soil_cracks_detection_files/soil_cracks_detection_5_0.png)
 
 
 
@@ -68,9 +78,11 @@ BW_frangi = filters.frangi(BW, sigmas=range(1, 10, 2), black_ridges=True)
 
 
 ```python
+# Compare the Sato and Frangi filters
 plt.figure(figsize=(12,8))
-plt.title("Sato filter")
+
 plt.subplot(1,2,1)
+plt.title("Sato filter")
 plt.imshow(BW_sato, cmap="gray")
 plt.axis('off')
 
@@ -84,43 +96,17 @@ plt.show()
 ```
 
 
-![png](soil_cracks_detection_files/soil_cracks_detection_6_0.png)
+![png](soil_cracks_detection_files/soil_cracks_detection_7_0.png)
+
+
+The Sato filter seems to capture the soil cracks more vividly, although the results strongly depend on the choice of filter paramters. Feel free to go back and re-run the filters with slightly different sigma values. You can also check the official documentation to test additional input arguments to fine tune the filter.
+
+Next we will explore the histograms of filter values. Histograms are useful to detect breaks that can be used to threshold the image. While in this case we could finish at this point, the idea is to remove some of the noise in the classified image andcreate a binary image that encodes each pixel as background or crack.
 
 
 
 ```python
-# Let's examine a portion of one of the classified images
-BW_sato[0:5,0:5]
-
-```
-
-
-
-
-    array([[0.11081854, 0.10405438, 0.09247755, 0.08217813, 0.07204519],
-           [0.10507106, 0.097352  , 0.08444911, 0.07310497, 0.06206067],
-           [0.09445599, 0.0853131 , 0.07042889, 0.05745314, 0.0449282 ],
-           [0.08393366, 0.07349174, 0.0567658 , 0.04231681, 0.02848959],
-           [0.0734532 , 0.06184009, 0.04341796, 0.02765935, 0.01271151]])
-
-
-
-
-```python
-# Absolute maximum value of the classified image
-print(np.max(BW_sato.flatten()))
-
-# Absolute minimum value of the classified image
-print(np.min(BW_sato.flatten()))
-
-```
-
-    0.4041610902514181
-    0.0
-
-
-
-```python
+# Plot histograms
 plt.figure(figsize=(12,4))
 
 plt.subplot(1,2,1)
@@ -139,11 +125,47 @@ plt.show()
 ![png](soil_cracks_detection_files/soil_cracks_detection_9_0.png)
 
 
+## Denoising image
+
+The top-hat transformation extracts small details from the image based on a the size and shape of a structuring element. So our first step consists of defining a structuring element of a specific shape.
+
+
 
 ```python
-selem = morphology.disk(4)
-noise = morphology.white_tophat(BW_sato, selem)
+# Generate structuring element (selem)
+selem = morphology.disk(4) # Generates an image without noise
+print(selem)
 
+```
+
+    [[0 0 0 0 1 0 0 0 0]
+     [0 0 1 1 1 1 1 0 0]
+     [0 1 1 1 1 1 1 1 0]
+     [0 1 1 1 1 1 1 1 0]
+     [1 1 1 1 1 1 1 1 1]
+     [0 1 1 1 1 1 1 1 0]
+     [0 1 1 1 1 1 1 1 0]
+     [0 0 1 1 1 1 1 0 0]
+     [0 0 0 0 1 0 0 0 0]]
+
+
+
+```python
+# De-noise image using the white top-hat transformation
+noise = morphology.white_tophat(BW_sato, selem) # Gets the noisy part of the image
+
+```
+
+
+```python
+# Subtract noise from classified image
+BW_sato_clean = BW_sato - noise
+
+```
+
+
+```python
+# Compare original filter, noise, and cleaned filter
 plt.figure(figsize=(12,6))
 
 plt.subplot(1,3,1)
@@ -158,25 +180,43 @@ plt.axis('off')
 
 plt.subplot(1,3,3)
 plt.title('Cleaned Sato')
-plt.imshow(BW_sato - noise, cmap="gray")
+plt.imshow(BW_sato_clean, cmap="gray")
 plt.axis('off')
 plt.show()
 
 ```
 
 
-![png](soil_cracks_detection_files/soil_cracks_detection_10_0.png)
+![png](soil_cracks_detection_files/soil_cracks_detection_14_0.png)
+
+
+## Binarize
+The process of binaring a gray scale image is to assign a value of either 0 or 1 to each pixel based on its current value. If the gray scale ranges between 0 and 1, the easiest way to binarize the image is to round the numbers. However, this may not produce the desired results in many cases. Using custom thresholds may improve the classification and extraction of the desired features.
 
 
 
 ```python
-BW_sato_clean = np.zeros(BW_sato.shape)
-idx = (BW_sato - noise) > 0.075
+# Binarize
+idx =  BW_sato_clean > 0.075 
 BW_sato_clean[idx] = 1
+BW_sato_clean[~idx] = 0
 
+```
+
+
+```python
+# COmpute percentage of the area occupied by the soil cracks
 percentage_cracks = np.sum(BW_sato_clean.flatten()) / BW_sato_clean.size * 100
 print('Cracks occupy:',round(percentage_cracks,1), '% of the area.')
 
+```
+
+    Cracks occupy: 19.4 % of the area.
+
+
+
+```python
+# Show final classification
 plt.figure(figsize=(12,8))
 
 plt.subplot(1,2,1)
@@ -190,61 +230,6 @@ plt.show()
 
 ```
 
-    Cracks occupy: 19.4 % of the area.
 
-
-
-![png](soil_cracks_detection_files/soil_cracks_detection_11_1.png)
-
-
-
-```python
-# Compute fractal dimension using Box count method
-# Source: https://stackoverflow.com/questions/44793221/python-fractal-box-count-fractal-dimension
-
-# From https://github.com/rougier/numpy-100 (#87)
-def boxcount(Z, k):
-    S = np.add.reduceat(
-        np.add.reduceat(Z, np.arange(0, Z.shape[0], k), axis=0),
-                           np.arange(0, Z.shape[1], k), axis=1)
-
-    # We count non-empty (0) and non-full boxes (k*k)
-    return len(np.where((S > 0) & (S < k*k))[0])
-    
-def fractal_dimension(Z):
-
-    # Minimal dimension of image
-    p = min(Z.shape)
-
-    # Greatest power of 2 less than or equal to p
-    n = 2**np.floor(np.log(p)/np.log(2))
-
-    # Extract the exponent
-    n = int(np.log(n)/np.log(2))
-
-    # Build successive box sizes (from 2**n down to 2**1)
-    sizes = 2**np.arange(n, 1, -1)
-
-    # Actual box counting with decreasing size
-    counts = []
-    for size in sizes:
-        counts.append(boxcount(Z, size))
-
-    # Fit the successive log(sizes) with log (counts)
-    coeffs = np.polyfit(np.log(sizes), np.log(counts), 1)
-    
-    # Return slope with inverse sign
-    return -coeffs[0]
-```
-
-
-```python
-fractal_dimension(BW_sato_clean)
-```
-
-
-
-
-    1.5859342852308054
-
+![png](soil_cracks_detection_files/soil_cracks_detection_18_0.png)
 
