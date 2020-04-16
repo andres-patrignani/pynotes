@@ -24,12 +24,12 @@ print("The temperature is:", round(celsius,2), "degrees Celsius")
 
 ```python
 inches = 72 # inches
-meters = inches * 2.54
-print(round(inches,1),"inches are equivalent to",round(meters,1),"meters")
+centimeters = inches * 2.54
+print(round(inches,1),"inches are equivalent to",round(centimeters,1),"centimeters")
 
 ```
 
-    72 inches are equivalent to 182.9 meters
+    72 inches are equivalent to 182.9 centimeters
 
 
 ## Compute the hypotenuse
