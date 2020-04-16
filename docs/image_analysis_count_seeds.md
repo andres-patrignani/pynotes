@@ -4,31 +4,50 @@ Example on how to use image analysis to identify and count seeds. In this tutori
 
 
 ```python
-import glob
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-from skimage.color import rgb2gray, label2rgb
-from skimage.morphology import erosion, disk
+from skimage.filters import threshold_otsu
+from skimage.morphology import area_opening, disk, binary_closing
 from skimage.measure import find_contours, label, regionprops
-```
-
-
-```python
-glob.os.chdir('/Users/andrespatrignani//Dropbox/Teaching/Scientific programming/introcoding-spring-2019/Datasets/')
+from skimage.color import rgb2gray, label2rgb
 
 ```
 
 
 ```python
-RGB = mpimg.imread('seeds.jpg')
+# Read color image
+image_rgb = mpimg.imread('../datasets/seeds.jpg')
+
 ```
 
 
 ```python
-plt.imshow(RGB)
+# Convert image to grayscale
+image_gray = rgb2gray(image_rgb)
+
+```
+
+
+```python
+# Visualize rgb and grayscale images
+plt.figure(figsize=(10,6))
+
+plt.subplot(1,2,1)
+plt.imshow(image_rgb)
+plt.axis('off')
+plt.title('RGB')
+plt.tight_layout()
+
+plt.subplot(1,2,2)
+plt.imshow(image_gray, cmap='gray')
+plt.axis('off')
+plt.title('Gray scale')
+plt.tight_layout()
+
 plt.show()
+
 ```
 
 
@@ -37,56 +56,77 @@ plt.show()
 
 
 ```python
-plt.plot(RGB[600,:,0], '-r', label='Red band')
-plt.plot(RGB[600,:,1], '-g', label='Green band')
-plt.plot(RGB[600,:,2], '-b', label='Blue band')
-plt.legend()
-plt.show()
-```
+# Segment seeds using a global automated threshold
+global_thresh = threshold_otsu(image_gray)
+image_binary = image_gray > global_thresh
 
-
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_5_0.png)
-
-
-
-```python
-grayscale = rgb2gray(RGB)
 ```
 
 
 ```python
-plt.imshow(grayscale, cmap='gray')
+# Display classified seeds and grayscale threshold
+plt.figure(figsize=(12,4))
+
+plt.subplot(1,3,1)
+plt.imshow(image_gray, cmap='gray')
 plt.axis('off')
+plt.title('Original grascale')
+plt.tight_layout()
+
+plt.subplot(1,3,2)
+plt.hist(image_gray.ravel(), bins=256)
+plt.axvline(global_thresh, color='r', linestyle='--')
+plt.title('Otsu threshold')
+plt.xlabel('Grasycale')
+plt.ylabel('Counts')
+
+plt.subplot(1,3,3)
+plt.imshow(image_binary, cmap='gray')
+plt.axis('off')
+plt.title('Binary')
+plt.tight_layout()
+
 plt.show()
+
 ```
 
 
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_7_0.png)
+![png](image_analysis_count_seeds_files/image_analysis_count_seeds_6_0.png)
 
 
 
 ```python
-print(grayscale.shape)
-```
+# Invert image
+image_binary = ~image_binary
 
-    (2040, 1826)
-
-
-
-```python
-plt.plot(grayscale[601,:], '-k', label='Grayscale band')
-plt.legend()
-plt.show()
 ```
 
 
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_9_0.png)
+```python
+# Remove small areas (remove noise)
+image_binary = area_opening(image_binary, area_threshold=1000, connectivity=2)
 
+```
 
 
 ```python
-plt.hist(grayscale.flatten(), bins=256, range=(0.0, 0.95))
+# Closing (performs a dilation followed by an erosion. Connect small bright patches)
+image_binary = binary_closing(image_binary, disk(5))
+
+```
+
+
+```python
+# Display inverted and denoised binary image
+plt.figure(figsize=(6,6))
+
+plt.imshow(image_binary, cmap='gray')
+plt.axis('off')
+plt.title('Binary')
+plt.tight_layout()
+
 plt.show()
+
 ```
 
 
@@ -95,229 +135,70 @@ plt.show()
 
 
 ```python
-plt.figure(figsize=(8,8))
-idx_seeds = grayscale < 0.9
-plt.imshow(idx_seeds, cmap='gray')
+# Identify seed boundaries
+contours = find_contours(image_binary, 0)
+
+# Print number of seeds in image
+print('Image contains',len(contours),'seeds')
+
+```
+
+    Image contains 36 seeds
+
+
+
+```python
+# Plot seed contours
+plt.figure(figsize=(6,6))
+plt.imshow(image_binary, cmap='gray')
 plt.axis('off')
-plt.show()
-```
+plt.tight_layout()
 
-
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_11_0.png)
-
-
-
-```python
-selem = disk(6)
-eroded = erosion(idx_seeds, selem)
-```
-
-
-```python
-plt.figure(figsize=(8,8))
-plt.axis('off')
-plt.imshow(eroded, cmap='gray')
-plt.show()
-```
-
-
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_13_0.png)
-
-
-
-```python
-contours = find_contours(eroded, 0)
-```
-
-
-```python
-plt.figure(figsize=(12,12))
-plt.imshow(eroded, cmap='gray')
-plt.axis('off')
 for contour in contours:
-    plt.plot(contour[:, 1], contour[:, 0], '-r', linewidth=2)
+    plt.plot(contour[:, 1], contour[:, 0], '-r', linewidth=1.5)
+    
+```
+
+
+![png](image_analysis_count_seeds_files/image_analysis_count_seeds_12_0.png)
+
+
+
+```python
+# Label image regions
+label_image = label(image_binary)
+image_label_overlay = label2rgb(label_image, image=image_rgb)
+
+```
+
+
+```python
+# Display image regions on top of original image
+plt.figure(figsize=(6, 6))
+plt.imshow(image_label_overlay)
+plt.tight_layout()
+plt.axis('off')
+plt.show()
+
+```
+
+
+![png](image_analysis_count_seeds_files/image_analysis_count_seeds_14_0.png)
+
+
+
+```python
+# Display contour for a single seed
+plt.figure(figsize=(12, 8))
+
+for seed in range(36):
+    plt.subplot(6,6,seed+1)
+    plt.plot(contours[seed][:, 1], contours[seed][:, 0], '-r', linewidth=2)
+    plt.tight_layout()
+plt.show()
 
 ```
 
 
 ![png](image_analysis_count_seeds_files/image_analysis_count_seeds_15_0.png)
-
-
-
-```python
-# Number of seeds
-len(contours)
-```
-
-
-
-
-    38
-
-
-
-
-```python
-# Single seed
-plt.plot(contours[0][:, 1], contours[0][:, 0], '-r', linewidth=2)
-plt.show()
-```
-
-
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_17_0.png)
-
-
-
-```python
-# label image regions
-label_image = label(eroded)
-image_label_overlay = label2rgb(label_image, image=RGB)
-
-```
-
-
-```python
-fig, ax = plt.subplots(figsize=(10, 6))
-ax.imshow(image_label_overlay)
-plt.axis('off')
-plt.show()
-
-```
-
-
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_19_0.png)
-
-
-
-```python
-region = regionprops(label_image)
-```
-
-
-```python
-from pprint import pprint
-pprint(dir(region[0]))
-```
-
-    ['__class__',
-     '__delattr__',
-     '__dict__',
-     '__dir__',
-     '__doc__',
-     '__eq__',
-     '__format__',
-     '__ge__',
-     '__getattribute__',
-     '__getitem__',
-     '__gt__',
-     '__hash__',
-     '__init__',
-     '__init_subclass__',
-     '__iter__',
-     '__le__',
-     '__lt__',
-     '__module__',
-     '__ne__',
-     '__new__',
-     '__reduce__',
-     '__reduce_ex__',
-     '__repr__',
-     '__setattr__',
-     '__sizeof__',
-     '__str__',
-     '__subclasshook__',
-     '__weakref__',
-     '_cache',
-     '_cache_active',
-     '_intensity_image',
-     '_intensity_image_double',
-     '_label_image',
-     '_ndim',
-     '_slice',
-     '_transpose_moments',
-     '_use_xy_warning',
-     'area',
-     'bbox',
-     'bbox_area',
-     'centroid',
-     'convex_area',
-     'convex_image',
-     'coords',
-     'eccentricity',
-     'equivalent_diameter',
-     'euler_number',
-     'extent',
-     'filled_area',
-     'filled_image',
-     'image',
-     'inertia_tensor',
-     'inertia_tensor_eigvals',
-     'intensity_image',
-     'label',
-     'local_centroid',
-     'major_axis_length',
-     'max_intensity',
-     'mean_intensity',
-     'min_intensity',
-     'minor_axis_length',
-     'moments',
-     'moments_central',
-     'moments_hu',
-     'moments_normalized',
-     'orientation',
-     'perimeter',
-     'solidity',
-     'weighted_centroid',
-     'weighted_local_centroid',
-     'weighted_moments',
-     'weighted_moments_central',
-     'weighted_moments_hu',
-     'weighted_moments_normalized']
-
-
-
-```python
-# Eccentricity is the measure of aspect ratio
-seed_volume = []
-seed_area = []
-seed_eccentricity = []
-seed_perimeter = []
-for item in region:
-    major_axis = item.major_axis_length/10 # 10 pixels per millimeter
-    minor_axis = item.minor_axis_length/10 # 10 pixels per millimeter
-    seed_volume.append(4/3*np.pi*major_axis**2 * minor_axis)
-    seed_area.append(item.area)
-    seed_eccentricity.append(item.major_axis_length/item.minor_axis_length)
-    seed_perimeter.append(item.perimeter)
-
-```
-
-
-```python
-plt.hist(seed_perimeter)
-plt.show()
-```
-
-
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_23_0.png)
-
-
-
-```python
-plt.hist(seed_eccentricity)
-plt.show()
-```
-
-
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_24_0.png)
-
-
-
-```python
-plt.hist(seed_area)
-plt.show()
-```
-
-
-![png](image_analysis_count_seeds_files/image_analysis_count_seeds_25_0.png)
 
