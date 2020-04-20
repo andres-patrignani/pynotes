@@ -314,7 +314,7 @@ X.head()
 
 ```python
 # Clustering
-k_zones = 3
+k_zones = 3 # An arbitrary but reasonable number of field management zones.
 y_pred = KMeans(n_clusters=k_zones, random_state=0).fit_predict(X)
 print(y_pred)
 
@@ -532,6 +532,8 @@ data
 
 
 ```python
+# Show correlations between variables. Let's add some soil texture
+# to see how sand and clay are related to the clusters.
 plt.figure(figsize=(8, 8))
 plt.subplot(221)
 plt.scatter(data['sand'], data['clay'], c=y_pred)
@@ -562,13 +564,18 @@ plt.show()
 
 
 ```python
+# Plot field managment zones
 plt.figure(figsize=(12,8))
 plt.subplot(121)
+plt.title('Spatial variability of clay content')
 plt.tricontourf(data['X'], data['Y'], data['clay'], levels=5)
 plt.scatter(data['X'], data['Y'], s=10, marker='o', facecolors='k')
 plt.axis('equal')
+plt.clim(0, 100)
+plt.colorbar()
 
 plt.subplot(122)
+plt.title('Zones based on soil color')
 plt.tricontourf(data['X'], data['Y'], data['clusters'], 
                 cmap="viridis", 
                 levels=[0,1,2], 
