@@ -113,7 +113,23 @@ image_binary = area_opening(image_binary, area_threshold=1000, connectivity=2)
 # Closing (performs a dilation followed by an erosion. Connect small bright patches)
 image_binary = binary_closing(image_binary, disk(5))
 
+# Let's inspect the structuring element
+print(disk(5))
+
 ```
+
+    [[0 0 0 0 0 1 0 0 0 0 0]
+     [0 0 1 1 1 1 1 1 1 0 0]
+     [0 1 1 1 1 1 1 1 1 1 0]
+     [0 1 1 1 1 1 1 1 1 1 0]
+     [0 1 1 1 1 1 1 1 1 1 0]
+     [1 1 1 1 1 1 1 1 1 1 1]
+     [0 1 1 1 1 1 1 1 1 1 0]
+     [0 1 1 1 1 1 1 1 1 1 0]
+     [0 1 1 1 1 1 1 1 1 1 0]
+     [0 0 1 1 1 1 1 1 1 0 0]
+     [0 0 0 0 0 1 0 0 0 0 0]]
+
 
 
 ```python
