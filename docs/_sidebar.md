@@ -104,7 +104,6 @@
   * [Soil water retention curve](soil_water_retention_curve.md)
   * [Atmospheric carbon dioxide](atmospheric_carbon_dioxide.md)
 
-
 * Probability
   * [Rainfall generator](rainfall_generator.md)
   * [Birthday paradox](birthday_paradox.md)
@@ -155,8 +154,8 @@
   * [Spatial interpolation](stats_2d_interpolation.md)
 
 * Mapping
+  * [Raster map](raster_nasa_worldview.md)
   * [Cumulative rainfall](cumulative_rainfall.md)
-  * [Soil moisture](soil_moisture_map.md)
   * [Field random samples](field_random_samples.md)
   
 * Model implementation
