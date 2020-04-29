@@ -14,6 +14,7 @@ A [cellular automaton created by John Conway in 1970](https://www.wikiwand.com/e
 import numpy as np
 import matplotlib.pyplot as plt
 from IPython.display import clear_output
+
 ```
 
 ## Generate the two-dimensional grid
@@ -35,7 +36,7 @@ This is one of the most important steps in the game of life. The evolution of th
 
 ```python
 # Set random seed for reproducibility
-np.random.seed(3) # 2
+np.random.seed(3)
 
 # Number of live cells
 N_seeds = 3000
@@ -55,7 +56,9 @@ Before we keep going we should check our work.
 
 ```python
 plt.pcolormesh(grid)
+plt.axis('off')
 plt.show()
+
 ```
 
 
@@ -64,12 +67,18 @@ plt.show()
 
 ## Iterations and offsets
 
-Set row and column combinations for each neighboring cell, excluding the center cell in a 8-connected neighbor array.
+Set row and column combinations for each neighboring cell, excluding the center cell in a 8-connected neighbor array. The original Game of Life was developed using a 4-connected neighbor array. In the cell below I provide both alternatives, just mute/unmute the neighbor array that you want to use.
+
 
 
 ```python
+# 8-connected neighboring cells
 offset_rows = np.array([-1, -1, -1, 0, 0, 1, 1, 1])
 offset_cols = np.array([-1, 0, 1, -1, 1, -1, 0, 1])
+
+# 4-connected neighboring cells
+# offset_rows = np.array([-1, 0, 0, 1])
+# offset_cols = np.array([0, -1, 1, 0])
 ```
 
 ## Iterate over each cell and apply rules
@@ -78,15 +87,18 @@ In this step will iterate over each cell, compute the number of neighbors (witho
 
 
 ```python
-N = 100
+N = 100 # days
+
+# Time loop
 for i in range(N):
     clear_output(wait=True)
-    plt.pcolormesh(grid)
+    plt.pcolormesh(grid, cmap='gray')
     plt.show()
 
     # Create new empty grid to store results for next generation
     new_grid = np.zeros([grid_rows,grid_cols])
     
+    # Grid scanning loops
     for row in range(1, grid.shape[0]-1):
         for col in range(1, grid.shape[1]-1):
             
@@ -136,8 +148,8 @@ grid_rows = 100
 grid_cols = 100
 grid = np.zeros([grid_rows,grid_cols])
 
-np.random.seed(3) # 2
-N_seeds = 3000
+np.random.seed(2) # 2
+N_seeds = 1000
 row_seeds = np.random.randint(0, grid.shape[0], N_seeds)
 col_seeds = np.random.randint(0, grid.shape[1], N_seeds)
 
@@ -208,11 +220,11 @@ for i in range(N):
                 if cell_sum == 3:
                     new_grid[row,col] = 1
     
-    # Count and append number of live cells
-    total_live = np.append(total_live, new_grid.sum())
-    
     # Replace current generation with next generation
     grid = new_grid
+    
+    # Count and append number of live cells
+    total_live = np.append(total_live, grid.sum())
 
 ```
 

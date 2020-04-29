@@ -90,7 +90,9 @@
 * Curve fitting
   * [Statistics module](statistics_module.md)
   * [Error metrics](error_metrics.md)
+  * [Analysis of variance](anova.md)
   * [Linear model](stats_linear_fit.md)
+  * [Calibration soil moisture sensor](linear_regression_sensor_calibration.md)
   * [Neutron probe calibration](neutron_probe_calibration.md)
   * [Anscombe's Quartet](anscombe_quartet.md)
   * [Soil respiration](soil_respiration.md)
@@ -155,6 +157,7 @@
 
 * Mapping
   * [Raster map](raster_nasa_worldview.md)
+  * [Raster change coordinates](raster_change_crs.md)
   * [Cumulative rainfall](cumulative_rainfall.md)
   * [Field random samples](field_random_samples.md)
   

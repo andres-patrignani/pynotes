@@ -240,6 +240,78 @@ show(clip);
 ![png](raster_nasa_worldview_files/raster_nasa_worldview_23_0.png)
 
 
+## East-West transect
+
+The state of Kansas spans an accentuated longitudinal precipitation gradient. The West par tof the state receives nearly 400 mm per year, while the east portion of the state receives nearly 1200 mm per year.
+o
+We can visualize whether vegetationlso follows a similar patterns by plot one (or perhaps) rows.
+
+
+```python
+selected_lat = 38.6
+py,px = raster.index(-102, selected_lat)
+selected_row = py
+row_values = np.ones(raster.shape[1]) * selected_row
+col_values = np.arange(raster.shape[1])
+
+lon_EW = raster.xy(row=row_values, col=col_values, offset='ul');
+
+```
+
+
+```python
+# Excess green
+R = np.float64(raster.read(1))
+G = np.float64(raster.read(2))
+B = np.float64(raster.read(3))
+
+ExG = 2*G - R - B
+
+# Get Excess green for selected row
+ExG_row = ExG[selected_row,:]
+
+```
+
+
+```python
+# Smooth signal to eliminate small interferences in the landscape
+from scipy.signal import medfilt
+ExG_row = medfilt(ExG_row, kernel_size=21)
+
+```
+
+
+```python
+# Plot East-West transect across Kansas
+plt.figure(figsize=(14,4))
+plt.plot(lon_EW[0], ExG_row)
+plt.xlabel('Longitude')
+plt.ylabel('Excess green') # Indicator of greenness
+plt.show()
+
+```
+
+
+![png](raster_nasa_worldview_files/raster_nasa_worldview_28_0.png)
+
+
+As expected, we can see a clear trend of increasing vegetation greenness from West to East.The signal is a bit noisy, meaning that there are some fields in western Kansas that are green (probably agricultural fields under irrigation, or rainfed fields that received good rainfall). Our transect also goes over rivers, small water bodies, and perhaps urban areas, casuing some ups and downs in the signal. The median filter should be able to remove some of this noise. You can try different kernel sizes to be more or less aggressive with the filter.
+
+
+
+```python
+# Show row in map
+plt.figure(figsize=(12,8))
+plt.axhline(selected_lat, color='r')
+show(raster, title='Terra MODIS 7-2-1 2019-09-05')
+plt.show()
+
+```
+
+
+![png](raster_nasa_worldview_files/raster_nasa_worldview_30_0.png)
+
+
 ## References
 Source: <https://rasterio.readthedocs.io/en/stable/intro.html>
 

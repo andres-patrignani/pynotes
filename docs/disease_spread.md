@@ -11,11 +11,9 @@ The code below is by no means intended for research use, but it may serve as the
 
 ## Ground rules and coding decisions
 
-- The model assumes an establish population with no birth rate.
+- The model assumes an established population with no birth rate.
 
-- The model does not considered the effect of race, age, sex, or physical condition of the individuals (this could be a nice addition)
-
-- A fixed percentage of individuals die after the quarentine period.
+- The model does not considered the effect of race, age, sex, or physical condition of the individuals.
 
 - At the quarentine day mark, all infected people that did not die automatically recover.
 
@@ -24,10 +22,6 @@ The code below is by no means intended for research use, but it may serve as the
 - Recovered individuals no longer transmit the disease to normal individuals.
 
 - When individuals reach the boundary of the system they automatically show up on the opposite side. This called a *torus* (or periodic) boundary condition and approximates an infinite system.
-
-- Dead individuals will be masked from further computations by assigning a value of NaN (using `np.nan`).
-
-- During the computation of distance, self individuals will be assigned a value of Inf (using `np.inf`) in the interactions matrix. 
 
 
 ## Inspiration
@@ -72,11 +66,11 @@ ymin = 0       # Lower system boundary
 ymax = 1000    # Upper system boundary
 
 # Simulation time constraints
-simulation_days = 150 # Number of simulation days
+simulation_length = 200 # Number of simulation days
 simulation_time = np.array([0])
 
 # Existing population
-N = 1000       # Number of live individuals
+N = 2000 # Number of live individuals
 live = np.ones(N, dtype=bool)
 dead = np.zeros(N, dtype=bool)
 
@@ -89,18 +83,17 @@ recovered = np.zeros(N, dtype=bool)
 x = np.random.uniform(xmin,xmax,N)
 y = np.random.uniform(ymin,ymax,N)
 theta = np.radians(np.random.uniform(0,360,N)) # Angle of movement
-
-# Compute percentage of individuals circulating
 speed = xmax/100 # rate at which individuals move.
-activity_rate = np.ones(N) * speed  
-fraction_static = 0  # Change this to keep people static (at home)
-static_individuals = np.random.randint(low=0, high=N, size=round(N*fraction_static))
-activity_rate[static_individuals] = 0 
+speed_active = np.ones(N) * speed # speed for every individual active
 
 # Social distancing
-# Distance below which one infected individual can 
-# transmit a disease to a normal individual
-social_distance = 10 # arbitrary distance
+# Distance below which one infected individual can transmit the
+# disease to a normal (healthy) individual
+social_distance = 15   # Arbitrary distance
+start_stay_home_order = 50  # number of days
+end_stay_home_order = 100   # number of days
+fraction_static = 0.7  # Change this to keep people static (at home)
+static_individuals = np.random.randint(low=0, high=N, size=round(N*fraction_static))
 
 # Death rate 
 death_rate = 5/100
@@ -110,9 +103,9 @@ quarentine_period = 21
 quarentine_time = np.zeros(N)
 
 # Inoculate a small group of individuals
-N_seed = 30   # Individuals infected at the epicenter
-#infected_seeds = np.random.randint(low=0, high=N, size=N_seed) # Random seeds
-infected_seeds = np.sqrt((x-xmax/2)**2 + (y-ymax/2)**2) < 100    # Center seeds
+#N_seed = 10   # Individuals infected at the epicenter
+#infected_seeds = np.random.randint(low=0, high=N, size=N_seed)  # Random seeds
+infected_seeds = np.sqrt((x-xmax/2)**2 + (y-ymax/2)**2) < 50    # Center seeds
 infected[infected_seeds] = True
 normal[infected_seeds] = False
 
@@ -124,14 +117,21 @@ total_infected = infected.sum()
 total_recovered = recovered.sum()
 
 # Start recursive iteration
-for t in range(simulation_days):
+for t in range(simulation_length):
    
     # Track time
     simulation_time = np.append(simulation_time, t)
     
+    # Implement/remove social distancing when time equals start/end stay-home order
+    if t == start_stay_home_order:
+        speed_active[static_individuals] = 0
+        
+    elif t == end_stay_home_order:
+        speed_active[static_individuals] = speed
+
     # Compute next positions of individuals
-    x = x + activity_rate * np.cos(theta)
-    y = y + activity_rate * np.sin(theta)
+    x = x + speed_active * np.cos(theta)
+    y = y + speed_active * np.sin(theta)
     
     # Implement torus boundaries.
     x[x < xmin] = xmax
@@ -141,7 +141,7 @@ for t in range(simulation_days):
     
     # Determine whether two individuals come in contact
     E = edist(x,y)
-    E[np.eye(N, dtype='bool')] = np.inf # Set selfs to inf to avoid being selected.
+    E[np.eye(N, dtype='bool')] = np.inf # selfs set to inf to prevent selecting in next step
     rows,cols = np.where(E <= social_distance)
     
     # New infected live individuals
@@ -149,7 +149,7 @@ for t in range(simulation_days):
     infected[rows[idx_infected]] = True
     normal[rows[idx_infected]] = False
 
-    # Change trajectory angle if hit boundary
+    # Change trajectory angle if hit another individual
     theta[rows] = np.abs(np.degrees(np.radians(theta[rows]+90))- 360) 
 
     # Update quarentine time for infected individuals
@@ -204,7 +204,7 @@ for t in range(simulation_days):
     plt.plot(simulation_time,total_infected, linestyle='-', color='orange',label='Infected')
     plt.plot(simulation_time,total_recovered, '--g',label='Recovered')
     plt.plot(simulation_time,total_dead, '-r',label='Dead')
-    plt.xlim(0,simulation_days)
+    plt.xlim(0,simulation_length)
     plt.ylim(0,N)
     plt.legend(loc='upper right', fontsize=12)
     plt.annotate(str(t) + " days", xy=(1,N-N*0.05), size=14)
