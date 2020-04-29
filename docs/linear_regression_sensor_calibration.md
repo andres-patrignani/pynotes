@@ -1,10 +1,10 @@
 # Linear Regression
 
-Univariate and multivariate linear regression with and without the use of categorical variables (e.g. soil type) and interactions.
+In this exercise we will improve the readings of the FieldScout TDR 300 hand-held soil moisture meter. 
 
-In this exercise we will improve the readings of the FeildScout hand-held soil moisture sensor. An experiment was conduted in the KSU Soil Water Processes lab to collect obsevations in containers with packed soil and carefully measured soil moisture. 
+An simple experiment was conduted at the KSU Soil Water Processes lab to collect soil mositure observations in 1-gallon containers packed with four contrasting soils (silt loam, silty clay, clay loam, and sand) and with carefully measured soil moisture. The aim of study was to generate a universal custom model that converts period average (the raw varaible measured by the sensor) into volumetric water content (volume of water per unit volume of soil).
 
-The experiment consisted of multiple soil moisture contents for a total of four contrasting soil textures (silt loam, silty clay, clay loam, and sand), with the aim of generating a universal csutom model that converts period average (the raw varaible measured by the sensor) into volumetric water content (volume of water per unit volume of soil).
+To find a custom calibration equation, in this exercise we will use univariate and multivariate linear regression with and without the use of categorical variables (e.g. soil type) and interactions.
 
 
 
@@ -379,6 +379,8 @@ lm_quadratic.summary()
 
 
 
+>The `I` character in the formula forces a new parameter for the quadratic term.
+
 ## Linear model with categorical term
 
 You can pass a varaible as a categorical variables using the `C()` notation, for instance: `C(soil_texture)`. 
@@ -568,7 +570,7 @@ str_rsquared = "Rsquared:" + str(round(lm_quadratic.rsquared, 2))
 
 ```python
 plt.figure(figsize=(8,6))
-plt.scatter(df["period"], df["vwc_obs"], s=50, facecolor='w', edgecolor='r')
+plt.scatter(df["period"], df["vwc_obs"], s=50, facecolor='w', edgecolor='b')
 plt.plot(x,y,'-k')
 plt.plot(x, iv_u, 'r--')
 plt.plot(x, iv_l, 'r--')
@@ -582,7 +584,7 @@ plt.show()
 ```
 
 
-![png](linear_regression_sensor_calibration_files/linear_regression_sensor_calibration_18_0.png)
+![png](linear_regression_sensor_calibration_files/linear_regression_sensor_calibration_19_0.png)
 
 
 
@@ -598,7 +600,7 @@ plt.show()
 ```
 
 
-![png](linear_regression_sensor_calibration_files/linear_regression_sensor_calibration_19_0.png)
+![png](linear_regression_sensor_calibration_files/linear_regression_sensor_calibration_20_0.png)
 
 
 In a normal distribution points would fall right on the line. In this case we observe some oscillation, but values don't largely deviate from the line, which suggests that the residuals are normally distributed. Remember that we are dealing with a highly variable porous media, with some error due to the nature of the measurements (some small amount of water evaporates while doing the sensor readings), and our sampling size is rather small, so all things considered this seems to be acceptable. To further test normality we can run a normality test (e.g. Shapiro-Wilk or Kolmogorov-Smirnov).
@@ -620,3 +622,7 @@ print('p-value for the hypothesis test:', pvalue)
 The p-value is greater than 0.05, so it fails to reject the null hypothesis that the residuals are normally distributed.
 
 Note that the table summary alrady has a metric for the normality of residuals using the `Jarque-Bera` test. Below I added the Shapiro-Wilk test since is one of the most common and robust normality tests. The `statsmodels` also has a method for computing the Kolmogorov-Smirnov normality test, look for `statsmodels.stats.diagnostic.kstest_normal`
+
+## References
+
+Yap, B.W. and Sim, C.H., 2011. Comparisons of various types of normality tests. Journal of Statistical Computation and Simulation, 81(12), pp.2141-2155.
