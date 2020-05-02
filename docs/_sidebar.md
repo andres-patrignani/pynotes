@@ -91,7 +91,7 @@
   * [Statistics module](statistics_module.md)
   * [Error metrics](error_metrics.md)
   * [Analysis of variance](anova.md)
-  * [Linear model](stats_linear_fit.md)
+  * [Linear regression](stats_linear_regression.md)
   * [Sensor calibration](linear_regression_sensor_calibration.md)
   * [Neutron probe calibration](neutron_probe_calibration.md)
   * [Anscombe's Quartet](anscombe_quartet.md)

@@ -263,8 +263,7 @@ The ANOVA table shows the there is significant differences between treatments. T
 
 The **F** is the F-statistic to test the null hypothesis that the corresponding coefficient is zero.
 
-The **pValue** of the F-statistic value. For example, the p-value for Age is 0.5283, implying that Age is not significant at the 5% significance level given the other terms in the model.
-
+The **pValue** of the F-statistic indicates whether a factor is not significant at the 5% significance level given the other terms in the model.
 
 A mean multicomparison test can help us identify which treatments show signifcant differences.
 
