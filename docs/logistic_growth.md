@@ -16,15 +16,7 @@ $k$ = growth rate
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-import sympy #import symbols, exp, lambdify
-
-```
-
-
-```python
-# Define symbolic expression for sigmoid function
-x = sympy.symbols('x')
-sigmoid_expr = 1 / (1+exp(-x))
+import sympy
 
 ```
 
@@ -34,7 +26,7 @@ L = 10
 x0 = 10
 k = 1
 x = sympy.symbols('x')
-sigmoid_expr = L / (1+exp(-k*(x-x0)))
+sigmoid_expr = L / (1+sympy.exp(-k*(x-x0)))
 
 ```
 
@@ -62,7 +54,7 @@ plt.show()
 ```
 
 
-![png](logistic_growth_files/logistic_growth_5_0.png)
+![png](logistic_growth_files/logistic_growth_4_0.png)
 
 
 
@@ -96,7 +88,7 @@ plt.show()
 ```
 
 
-![png](logistic_growth_files/logistic_growth_8_0.png)
+![png](logistic_growth_files/logistic_growth_7_0.png)
 
 
 
@@ -113,7 +105,7 @@ print(sigmoid_expr_twoprime)
 
 ```python
 # Convert symbolic expression of sigmoid second derivative to lambda function
-f_sigmoid_twoprime = lambdify(x, sigmoid_expr_twoprime, 'numpy')
+f_sigmoid_twoprime = sympy.lambdify(x, sigmoid_expr_twoprime, 'numpy')
 
 ```
 
@@ -131,7 +123,7 @@ plt.show()
 ```
 
 
-![png](logistic_growth_files/logistic_growth_11_0.png)
+![png](logistic_growth_files/logistic_growth_10_0.png)
 
 
 
@@ -167,7 +159,7 @@ plt.show()
 ```
 
 
-![png](logistic_growth_files/logistic_growth_13_0.png)
+![png](logistic_growth_files/logistic_growth_12_0.png)
 
 
 ## Observations
