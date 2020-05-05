@@ -26,14 +26,14 @@ L = 10
 x0 = 10
 k = 1
 x = sympy.symbols('x')
-sigmoid_expr = L / (1+sympy.exp(-k*(x-x0)))
+logistic_expr = L / (1 + sympy.exp(-k*(x-x0)))
 
 ```
 
 
 ```python
 # Convert symbolic expression of sigmoid function to lambda function
-f_sigmoid = sympy.lambdify(x, sigmoid_expr, 'numpy')
+f_logistic = sympy.lambdify(x, logistic_expr, 'numpy')
 
 ```
 
@@ -44,11 +44,11 @@ lower_xlim = 0
 upper_xlim = 20
 step = 0.1
 xvec = np.arange(lower_xlim,upper_xlim, step)
-yvec = f_sigmoid(xvec)
+yvec = f_logistic(xvec)
 
 plt.figure()
 plt.plot(xvec,yvec)
-plt.title('Sigmoid function')
+plt.title('Logistic function')
 plt.show()
 
 ```
@@ -60,8 +60,8 @@ plt.show()
 
 ```python
 # Compute symbolic expression for first derivative of sigmoid function
-sigmoid_expr_prime = sympy.diff(sigmoid_expr, x, 1)
-print(sigmoid_expr_prime)
+logistic_expr_prime = sympy.diff(logistic_expr, x, 1)
+print(logistic_expr_prime)
 
 ```
 
@@ -71,18 +71,18 @@ print(sigmoid_expr_prime)
 
 ```python
 # Convert symbolic expression of sigmoid first derivative to lambda function
-f_sigmoid_prime = sympy.lambdify(x, sigmoid_expr_prime, 'numpy')
+f_logistic_prime = sympy.lambdify(x, logistic_expr_prime, 'numpy')
 
 ```
 
 
 ```python
 # Plot graph of first derivative of sigmoid function
-yvec_prime = f_sigmoid_prime(xvec)
+yvec_prime = f_logistic_prime(xvec)
 
 plt.figure()
 plt.plot(xvec,yvec_prime)
-plt.title('First derivative of sigmoid function')
+plt.title('First derivative of logistic function')
 plt.show()
 
 ```
@@ -94,8 +94,8 @@ plt.show()
 
 ```python
 # Compute second derivative of sigmoid function
-sigmoid_expr_twoprime = sympy.diff(sigmoid_expr, x, 2)
-print(sigmoid_expr_twoprime)
+logistic_expr_twoprime = sympy.diff(logistic_expr, x, 2)
+print(logistic_expr_twoprime)
 
 ```
 
@@ -105,19 +105,19 @@ print(sigmoid_expr_twoprime)
 
 ```python
 # Convert symbolic expression of sigmoid second derivative to lambda function
-f_sigmoid_twoprime = sympy.lambdify(x, sigmoid_expr_twoprime, 'numpy')
+f_logistic_twoprime = sympy.lambdify(x, logistic_expr_twoprime, 'numpy')
 
 ```
 
 
 ```python
-# Plot graph of second derivative of sigmoid function
+# Plot graph of second derivative of logistic function
 
-yvec_twoprime = f_sigmoid_twoprime(xvec)
+yvec_twoprime = f_logistic_twoprime(xvec)
 
 plt.figure()
 plt.plot(xvec,yvec_twoprime)
-plt.title('Second derivative of sigmoid function')
+plt.title('Second derivative of logistic function')
 plt.show()
 
 ```
@@ -147,13 +147,13 @@ y_highest_accel_neg = yvec[idx_highest_accel_neg]
 
 
 ```python
-# Plot sigmoid function with metrics
+# Plot logistic function with metrics
 plt.figure()
 plt.plot(xvec,yvec)
 plt.scatter(x_highest_slope, y_highest_slope, marker='o', color='r')
 plt.scatter(x_highest_accel_pos, y_highest_accel_pos, marker='v', color='k')
 plt.scatter(x_highest_accel_neg, y_highest_accel_neg, marker='s', color='k')
-plt.title('Sigmoid function')
+plt.title('Logistic function')
 plt.show()
 
 ```
