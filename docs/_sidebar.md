@@ -102,6 +102,7 @@
   * [Multiple linear regression](stats_multiple_linear_regression.md)
   * [Frontier function](frontier_function.md)
   * [Exponential decay](stats_curve_fitting_exp.md)
+  * [Cosmos calibration](cosmos_calibration.md)
   * [Cosine wave](stats_curve_fitting_wave.md)
   * [Soil water retention curve](soil_water_retention_curve.md)
   * [Atmospheric carbon dioxide](atmospheric_carbon_dioxide.md)
