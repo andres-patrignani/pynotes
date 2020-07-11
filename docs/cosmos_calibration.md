@@ -265,18 +265,6 @@ N_cal = [2574, 2434, 2438, 2484, 2700] # Average corrected counts of hour before
 
 
 ```python
-0.0154*0.556
-```
-
-
-
-
-    0.008562400000000001
-
-
-
-
-```python
 # Fit model
 
 # Lattice water g/g
@@ -316,10 +304,10 @@ plt.show()
 ```
 
 
-![png](cosmos_calibration_files/cosmos_calibration_15_0.png)
+![png](cosmos_calibration_files/cosmos_calibration_14_0.png)
 
 
-## Step 3: Convert corrected neutron counts into volumetric water content
+## Step 4: Convert corrected neutron counts into volumetric water content
 
 
 ```python
@@ -341,5 +329,5 @@ plt.show()
 ```
 
 
-![png](cosmos_calibration_files/cosmos_calibration_18_0.png)
+![png](cosmos_calibration_files/cosmos_calibration_17_0.png)
 
