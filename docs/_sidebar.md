@@ -190,8 +190,3 @@
 * Symbolic math
   * [Sympy module](sympy_module.md)
   * [Logistic growth](logistic_growth.md)
-
-* Games
-  * [Hangman](hangman.md)
-  * [Monty Hall](monty_hall.md)
-  * [Blackjack](blackjack.md)
