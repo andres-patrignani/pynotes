@@ -10,4 +10,4 @@ scikit-learn==0.22.1
 scipy==1.4.1
 seaborn==0.10.*
 sympy==1.5.1
-urllib3==1.25.8
+urllib3==1.26.5
